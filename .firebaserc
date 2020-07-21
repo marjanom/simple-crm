@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "glotify-15f2f": {
+      "hosting": {
+        "simple-crm": [
+          "glotify-15f2f"
+        ]
+      }
+    }
+  }
+}
