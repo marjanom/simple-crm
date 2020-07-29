@@ -33,7 +33,12 @@ export class UserDetailComponent implements OnInit {
         this.user = new User(user);
         console.log('Retrieved user', this.user);
       });
-
   }
 
+  openAddressDialog(){
+
+  }
+  
 }
+
+
