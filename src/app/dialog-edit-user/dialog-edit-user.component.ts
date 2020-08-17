@@ -1,7 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from 'src/models/user.class';
-import { MatDialogRef } from '@angular/material/dialog';
-import { AngularFirestore } from '@angular/fire/firestore';
+// Unverständlich
+function function1(arg1, arg2) {
+  console.log('Aboniere ' + arg1);
+}
+
+
+// Viiiel besser ;-)
+function help(channel) {
+  console.log('Aboniere ' + channel);
+}
+
+// Kannst du diese Funktion verstehen?
+help('diesen Channel');
+
+
+
+
+
+
+
 
 @Component({
   selector: 'app-dialog-edit-user',
@@ -28,7 +44,11 @@ export class DialogEditUserComponent implements OnInit {
       .then(() => {
         this.loading = false;
         this.dialogRef.close();
-       });
+      });
   }
+
+
+
+
 
 }
