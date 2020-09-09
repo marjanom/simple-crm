@@ -9,7 +9,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./dialog-edit-address.component.scss']
 })
 export class DialogEditAddressComponent implements OnInit {
-  user: User;
+  user: User = new User();
   userId: string;
   loading = false;
 

@@ -1,23 +1,7 @@
-// Unverständlich
-function function1(arg1, arg2) {
-  console.log('Aboniere ' + arg1);
-}
-
-
-// Viiiel besser ;-)
-function help(channel) {
-  console.log('Aboniere ' + channel);
-}
-
-// Kannst du diese Funktion verstehen?
-help('diesen Channel');
-
-
-
-
-
-
-
+import { OnInit, Component } from '@angular/core';
+import { User } from 'src/models/user.class';
+import { MatDialogRef } from '@angular/material/dialog';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-dialog-edit-user',
@@ -25,7 +9,7 @@ help('diesen Channel');
   styleUrls: ['./dialog-edit-user.component.scss']
 })
 export class DialogEditUserComponent implements OnInit {
-  user: User;
+  user: User = new User();
   userId: string;
   loading = false;
   birthDate: Date;
@@ -37,14 +21,18 @@ export class DialogEditUserComponent implements OnInit {
 
   saveUser() {
     this.loading = true;
-    this.firestore
-      .collection('users')
-      .doc(this.userId)
-      .update(this.user.toJSON())
-      .then(() => {
-        this.loading = false;
-        this.dialogRef.close();
-      });
+    if (this.userId) {
+      this.firestore
+        .collection('users')
+        .doc(this.userId)
+        .update(this.user.toJSON())
+        .then(() => {
+          this.loading = false;
+          this.dialogRef.close();
+        });
+    } else {
+      // Throw error
+    }
   }
 
 

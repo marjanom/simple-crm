@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DialogEditUserComponent } from './dialog-edit-user.component';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { RouterModule } from '@angular/router';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire';
 
 describe('DialogEditUserComponent', () => {
   let component: DialogEditUserComponent;
@@ -8,7 +13,13 @@ describe('DialogEditUserComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DialogEditUserComponent ]
+      imports: [AngularFireModule.initializeApp(environment.firebase), AngularFirestoreModule, RouterModule.forRoot([]), MatDialogModule],
+      declarations: [ DialogEditUserComponent ],
+      providers: [
+        {
+          provide: MatDialogRef,
+          useValue: {}
+        }]
     })
     .compileComponents();
   }));
