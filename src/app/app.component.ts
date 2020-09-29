@@ -7,7 +7,6 @@ import { MatDrawer } from '@angular/material/sidenav';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'simple-crm';
   @ViewChild('drawer') drawer: MatDrawer;
 
   openDrawer = true;
