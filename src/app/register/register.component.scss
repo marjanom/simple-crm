@@ -1,0 +1,55 @@
+.background-image {
+    object-fit: cover;
+}
+
+.register-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.register-container {
+    background-color: rgba(60, 36, 196, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(100vw - 160px);
+    padding: 0 80px;
+
+}
+
+.register-dialog {
+    max-width: 40rem;
+}
+
+
+// header {
+//     position: absolute;
+//     right: 0;
+//     top: 0;
+//     left: 0;
+
+//     nav {
+//         display: flex;
+//         justify-content: flex-end;
+//         padding: 32px;
+
+//         a {
+//             color: white;
+//             margin-left: 32px;
+//             margin-right: 32px;
+//             text-decoration: none;
+//             font-weight: 550;
+//             font-size: 16px;
+//             letter-spacing: 1.25px;
+
+//             &:hover {
+//                 color: rgba(255,255,255,0.6);
+//             }
+//         }
+//     }
+
+// }
