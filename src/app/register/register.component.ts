@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { faFacebookSquare, faGoogle } from '@fortawesome//free-brands-svg-icons';
 
 @Component({
   selector: 'app-register',
@@ -8,13 +9,16 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
+  hide = true;
+  faFacebookSquare = faFacebookSquare;
+  faGoogle = faGoogle;
 
   getErrorMessage() {
     if (this.email.hasError('required')) {
-      return 'You must enter a value';
+      return 'Please enter an email';
     }
 
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+    return this.email.hasError('email') ? 'Please enter a valid email' : '';
   }
 
   constructor() { }

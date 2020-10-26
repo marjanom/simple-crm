@@ -1,12 +1,12 @@
 <img class="register-overlay background-image" src="./assets/img/background.jpg">
 
 <div class="register-overlay register-container">
-    <!-- <header>
+    <header>
         <nav>
-            <a href="register">Register</a>
+            <!-- <a href="register">Register</a> -->
             <a href="#">Login</a>
         </nav>
-    </header> -->
+    </header>
 
 
     <mat-card class="register-dialog">
@@ -16,17 +16,32 @@
 
         </mat-card-header>
         <mat-card-content>
-            <mat-form-field appearance="fill">
+
+            <mat-form-field appearance="fill" >
                 <mat-label>Enter your email</mat-label>
                 <input matInput placeholder="pat@example.com" [formControl]="email" required>
                 <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
               </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Define your password</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
        
 
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button>Continue with Facebook</button>
-          <button mat-button>Continue with Google</button>
+          <button mat-raised-button class="sign-up-btn">Sign up</button>        
+          <div class="separator-container">
+            <div class="separator"></div>  
+            OR
+            <div class="separator"></div>  
+          </div>
+          <button mat-raised-button class="continue-btn fb"> <fa-icon [icon]="faFacebookSquare"></fa-icon> Continue with Facebook</button>
+          <button mat-raised-button class="continue-btn"> <fa-icon [icon]="faGoogle"></fa-icon> Continue with Google</button>
         </mat-card-actions>
       </mat-card>
 

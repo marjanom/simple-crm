@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
    */
   private checkForStartPage() {
     let url = window.location.href;
-    this.openDrawer = !url.endsWith('start');
+    this.openDrawer = !url.endsWith('start') && !url.endsWith('register');
   }
 
 }
