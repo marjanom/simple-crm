@@ -31,6 +31,7 @@ import { StartComponent } from './start/start.component';
 import { RegisterComponent } from './register/register.component';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
+import { RegisterEmailComponent } from './register-email/register-email.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
     DialogEditAddressComponent,
     DialogEditUserComponent,
     StartComponent,
-    RegisterComponent
+    RegisterComponent,
+    RegisterEmailComponent
   ],
   imports: [
     BrowserModule,

@@ -21,12 +21,6 @@
 
 }
 
-.register-dialog {
-    // max-width: 40rem;
-
-}
-
-
 header {
     position: absolute;
     right: 0;
@@ -72,7 +66,6 @@ header {
 
 .mat-card-actions {
     display: flex;
-    flex-direction: column;
     align-items: center;   
 }
 
@@ -81,34 +74,12 @@ header {
 
 }
 
-.separator-container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    margin: 0.5rem;
-}
-
-.separator {
-    width: 50%;
-    border-bottom: 3px solid black;
-    margin: 1rem;
-}
-
 .sign-up-btn {
     background-color: #F23077;
     color: white;
 }
 
-.continue-btn {
-    margin: 0.5rem !important;
-    width: 16rem;
-    text-align: left;
 
-}
-.fb {
-    background-color: #4867AA;
-    color: white;
-}
 
 mat-card {
     display: flex;
@@ -116,13 +87,10 @@ mat-card {
     align-items: center;
     padding: 2rem;
     border-radius: 1rem;
+    width: 30rem;
 }
 mat-card-content {
     display: flex;
     flex-direction: column;
 }
 
-fa-icon {
-    padding-right: 1rem;
-    font-size: 1.2rem;
-}

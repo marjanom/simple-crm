@@ -17,11 +17,11 @@ export class AppComponent implements OnInit {
 
 
   /**
-   * Checks if the current page is the landing page. If yes, certain elements will be hidden
+   * Checks if the current page is the landing or registration page. If yes, certain elements will be hidden
    */
   private checkForStartPage() {
     let url = window.location.href;
-    this.openDrawer = !url.endsWith('start') && !url.endsWith('register');
+    this.openDrawer = !url.endsWith('start') && !url.endsWith('register') && !url.endsWith('register/email');
   }
 
 }
