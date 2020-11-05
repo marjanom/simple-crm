@@ -131,5 +131,8 @@
       }
     }
   },
-  "defaultProject": "simple-crm"
+  "defaultProject": "simple-crm",
+  "cli": {
+    "analytics": false
+  }
 }

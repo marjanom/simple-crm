@@ -1,0 +1,39 @@
+<div class="dialog-container">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+    <h1 mat-dialog-title>Add Organisation</h1>
+    <div mat-dialog-content>
+
+        <div>
+            <mat-form-field class="mr-16" appearance="outline">
+                <mat-label>Name</mat-label>
+                <input [disabled]="loading" [(ngModel)]="organisation.name" matInput placeholder="Name">
+                <!-- <mat-hint>Please enter a name</mat-hint> -->
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field class="mr-16" appearance="outline">
+                <mat-label>Select admin</mat-label>
+                <mat-select  [(value)]="selectedAdmins" multiple>
+                    <mat-option *ngFor="let user of allUsers" value="{{user.customIdName}}">{{user.firstName}}</mat-option>
+                </mat-select>
+                <mat-hint>Add admin to organisation</mat-hint>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="mr-16" appearance="outline">
+                <mat-label>Select user</mat-label>
+                <mat-select  [(value)]="selectedUsers" multiple>
+                    <mat-option *ngFor="let user of allUsers" value="{{user.customIdName}}">{{user.firstName}}</mat-option>
+                </mat-select>
+                <mat-hint>Add user to organisation</mat-hint>
+            </mat-form-field>
+        </div>
+
+    </div>
+    <div mat-dialog-actions>
+        <button [disabled]="loading" mat-button (click)="dialogRef.close()">Cancel</button>
+        <button [disabled]="loading" mat-button (click)="saveOrganisation()" cdkFocusInitial>Save</button>
+    </div>
+</div>

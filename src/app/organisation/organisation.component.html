@@ -1,0 +1,23 @@
+<mat-card>
+    <table class="organisation-table">
+        <tr>
+            <th>Name</th>
+            <th>Admins</th>
+            <th>Users</th>
+            <th>Todos</th>
+        </tr>
+        <tr *ngFor="let organisation of allOrganisations" [routerLink]="['/organisation/' + organisation.customIdName]">
+            <td>{{ organisation.name }}</td>
+            <td>{{ organisation.admins.length }}</td>
+            <td>{{ organisation.users.length }}</td>
+            <td>{{ organisation.defaultTodos.length }}</td>
+        </tr>
+
+    </table>
+
+</mat-card>
+
+
+<button (click)="openDialog()" class="add-organisation-btn" mat-fab color="primary" matTooltip="Add organisation">
+    <mat-icon>add</mat-icon>
+</button>
