@@ -1,1 +1,68 @@
-<p>organisation-detail works!</p>
+<mat-card class="organisation-detail-header">
+    <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="organisationMenu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <mat-menu #organisationMenu="matMenu">
+        <button mat-menu-item (click)="editOrganisationDetail()">Edit</button>
+      </mat-menu>
+
+    <img src="./assets/img/profile.png">
+    <div class="organisation-details">
+        <h2>{{ organisation.name }}</h2>
+    </div>
+</mat-card>
+
+
+
+<mat-card class="mt-32">
+    <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="adminsMenu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      
+      <mat-menu #adminsMenu="matMenu">
+        <button mat-menu-item (click)="editAdmins()">Edit</button>
+      </mat-menu>
+
+    <mat-card-title>Admins</mat-card-title>
+
+    <mat-card-content *ngFor="let admin of admins;">
+        {{ admin.firstName }} {{ admin.lastName }}<br>
+        {{ admin.street }}<br>
+        {{ admin.zipCode }} {{ admin.city }}
+    </mat-card-content>
+</mat-card>
+
+<mat-card class="mt-32">
+    <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="usersMenu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      
+      <mat-menu #usersMenu="matMenu">
+        <button mat-menu-item (click)="editUsers()">Edit</button>
+      </mat-menu>
+
+    <mat-card-title>Users</mat-card-title>
+
+    <mat-card-content *ngFor="let user of users;">
+        {{ user.firstName }} {{ user.lastName }}<br>
+        {{ user.street }}<br>
+        {{ user.zipCode }} {{ user.city }}
+    </mat-card-content>
+</mat-card>
+
+<mat-card class="mt-32">
+    <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="todosMenu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      
+      <mat-menu #todosMenu="matMenu">
+        <button mat-menu-item (click)="editTodos()">Edit</button>
+      </mat-menu>
+
+    <mat-card-title>Todos</mat-card-title>
+
+    <mat-card-content *ngFor="let todo of organisation.todos;">
+        {{ todo.name }}<br>
+    </mat-card-content>
+</mat-card>

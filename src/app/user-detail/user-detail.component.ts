@@ -55,6 +55,12 @@ export class UserDetailComponent implements OnInit {
     dialog.componentInstance.userId = this.userId;
   }
 
+  changeTodoState(checked: boolean) {
+    this.firestore
+      .collection('users')
+      .doc(this.userId)
+      .set({
+        todos: this.user.todos
+      },{merge: true});
+  }
 }
-
-

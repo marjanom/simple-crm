@@ -2,13 +2,13 @@ import { defaultTodos } from './defaultTodos';
 
 export class Organisation {
     name: string;
-    defaultTodos: [];
+    todos: [];
     admins: [];
     users: [];
 
     constructor(obj?: any) {
         this.name = obj ? obj.name : '';
-        this.defaultTodos = obj ? obj.defaultTodos : defaultTodos;
+        this.todos = obj ? obj.todos : defaultTodos;
         this.admins = obj ? obj.admins : [];
         this.users = obj ? obj.users : [];
     }
@@ -16,7 +16,7 @@ export class Organisation {
     public toJSON() {
         return {
             name : this.name,
-            defaultTodos : this.defaultTodos,
+            todos : this.todos,
             admins : this.admins,
             users : this.users
         };
