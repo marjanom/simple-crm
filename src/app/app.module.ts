@@ -37,6 +37,8 @@ import { RegisterEmailComponent } from './register-email/register-email.componen
 import { OrganisationComponent } from './organisation/organisation.component';
 import { DialogAddOrganisationComponent } from './dialog-add-organisation/dialog-add-organisation.component';
 import { OrganisationDetailComponent } from './organisation-detail/organisation-detail.component';
+import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
+import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,9 @@ import { OrganisationDetailComponent } from './organisation-detail/organisation-
     MatCardModule,
     MatMenuModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgxAuthFirebaseUIModule.forRoot(environment.firebase),
+    MatPasswordStrengthModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
