@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,17 @@ export class AppComponent implements OnInit {
 
   openDrawer = true;
 
+
+  constructor(private router: Router) {
+    router.events.subscribe(() => {
+      this.checkForStartPage();
+});
+  }
+
   ngOnInit() {
     this.checkForStartPage();
+
+
   }
 
 
@@ -21,7 +31,7 @@ export class AppComponent implements OnInit {
    */
   private checkForStartPage() {
     let url = window.location.href;
-    this.openDrawer = !url.endsWith('start') && !url.endsWith('register') && !url.endsWith('register/email');
+    this.openDrawer = !url.includes('start') && !url.includes('login') ;
   }
 
 }

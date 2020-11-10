@@ -1,0 +1,33 @@
+<img class="login-overlay background-image" src="./assets/img/background.jpg">
+
+
+
+
+<div class="login-overlay login-container">
+
+
+  <header>
+    <nav>
+        <a href="/start">Start</a>        
+        <a *ngIf="dashboardAccessible" href="/dashboard">Dashboard</a>
+    </nav>
+</header>
+
+  <ngx-auth-firebaseui 
+    appearance = "legacy"
+    [providers]="[providers.Google, providers.Facebook]"
+    [guestEnabled]="false"
+    [resetPasswordEnabled]="true"
+    messageOnAuthSuccess="message"
+    messageOnAuthError="errorMessage"
+    (onSuccess)="loginSuccessful($event)"
+    (onError)="printError($event)" >
+
+  </ngx-auth-firebaseui>
+
+
+
+    
+
+</div>
+

@@ -18,7 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
@@ -30,15 +30,16 @@ import { MatMenuModule } from '@angular/material/menu';
 import { DialogEditAddressComponent } from './dialog-edit-address/dialog-edit-address.component';
 import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.component';
 import { StartComponent } from './start/start.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
-import { RegisterEmailComponent } from './register-email/register-email.component';
 import { OrganisationComponent } from './organisation/organisation.component';
 import { DialogAddOrganisationComponent } from './dialog-add-organisation/dialog-add-organisation.component';
 import { OrganisationDetailComponent } from './organisation-detail/organisation-detail.component';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
+
+
 
 @NgModule({
   declarations: [
@@ -50,8 +51,7 @@ import { MatPasswordStrengthModule } from '@angular-material-extensions/password
     DialogEditAddressComponent,
     DialogEditUserComponent,
     StartComponent,
-    RegisterComponent,
-    RegisterEmailComponent,
+    LoginComponent,
     OrganisationComponent,
     DialogAddOrganisationComponent,
     OrganisationDetailComponent
@@ -80,7 +80,7 @@ import { MatPasswordStrengthModule } from '@angular-material-extensions/password
     MatMenuModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    NgxAuthFirebaseUIModule.forRoot(environment.firebase),
+    NgxAuthFirebaseUIModule.forRoot(environment.firebase, () => 'Simple-CRM', environment.ngxAuthfirebaseUIConfig),
     MatPasswordStrengthModule.forRoot()
   ],
   providers: [],
