@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
-import { NavigationStart, Router } from '@angular/router';
+import { Router } from '@angular/router';
+// import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
+
 
 @Component({
   selector: 'app-root',
@@ -13,7 +15,9 @@ export class AppComponent implements OnInit {
   openDrawer = true;
 
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router
+    ) {
     router.events.subscribe(() => {
       this.checkForStartPage();
 });
@@ -27,7 +31,7 @@ export class AppComponent implements OnInit {
 
 
   /**
-   * Checks if the current page is the landing or registration page. If yes, certain elements will be hidden
+   * Checks if the current page is the landing or login page. If yes, certain elements will be hidden
    */
   private checkForStartPage() {
     let url = window.location.href;

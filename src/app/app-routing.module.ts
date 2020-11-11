@@ -7,7 +7,7 @@ import { StartComponent } from './start/start.component';
 import { LoginComponent } from './login/login.component';
 import { OrganisationComponent } from './organisation/organisation.component';
 import { OrganisationDetailComponent } from './organisation-detail/organisation-detail.component';
-import {LoggedInGuard} from 'ngx-auth-firebaseui';
+import { LoggedInGuard } from 'ngx-auth-firebaseui';
 
 
 const routes: Routes = [
