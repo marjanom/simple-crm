@@ -17,12 +17,17 @@
     min-height: 56px;
     display: flex;
     align-items: center;
+
+    img {
+        cursor: pointer;
+    }
 }
 
 mat-toolbar,
 mat-toolbar-row {
     min-height: 56px;
     height: 56px;
+    justify-content: space-between;
 }
 
 .menu-items {

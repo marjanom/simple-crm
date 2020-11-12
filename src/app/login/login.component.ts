@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 
     this.checkUserData(authEvent);
     // redirect to dashboard when login successful
-    // window.location.href="/dashboard";  
+    window.location.href="/dashboard";  
 }
 
 
@@ -73,6 +73,7 @@ adaptUserEntry(fetchedUser) {
     this.user.uid = fetchedUser.uid;
     this.user.providerId = fetchedUser.providerId;
     this.user.photoURL = fetchedUser.photoURL;
+    if (this.user.photoURL === '') (this.user.photoURL = 'src/assets/img/user/account.svg');
     this.user.displayName = fetchedUser.displayName;
     if (this.user.displayName !== '') (this.user.firstName = this.user.displayName)
     // console.log('user', this.user);

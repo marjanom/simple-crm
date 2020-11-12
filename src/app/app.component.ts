@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
-// import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
+import { AuthProcessService } from 'ngx-auth-firebaseui';
 
 
 @Component({
@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.checkForStartPage();
 
+    
 
   }
 
@@ -38,4 +39,8 @@ export class AppComponent implements OnInit {
     this.openDrawer = !url.includes('start') && !url.includes('login') ;
   }
 
+
+  lockAccess() {
+    window.location.reload();
+  }
 }
