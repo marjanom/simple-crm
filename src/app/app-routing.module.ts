@@ -11,8 +11,8 @@ import { LoggedInGuard } from 'ngx-auth-firebaseui';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [LoggedInGuard] },
+  { path: '', redirectTo: 'user', pathMatch: 'full' },
+  // { path: 'dashboard', component: DashboardComponent, canActivate: [LoggedInGuard] },
   { path: 'start', component: StartComponent },
   { path: 'organisation', component: OrganisationComponent, canActivate: [LoggedInGuard]},
   { path: 'organisation/:id', component: OrganisationDetailComponent, canActivate: [LoggedInGuard]},

@@ -3,10 +3,10 @@
 <div class="landing-page-overlay landing-page-container">
     <header>
         <nav>
-            <a href="/login">Login</a>
-            <a  href="/dashboard">Dashboard</a>
-            <a  href="/user">Users</a>
-            <a  href="/organisation">Organisation</a>
+            <a *ngIf="!isLoggedIn" href="/login">Login</a>
+            <!-- <a *ngIf="isLoggedIn"  href="/dashboard">Dashboard</a> -->
+            <a *ngIf="isLoggedIn"  href="/user">Users</a>
+            <a *ngIf="isLoggedIn"  href="/organisation">Organisation</a>
             
         </nav>
     </header>

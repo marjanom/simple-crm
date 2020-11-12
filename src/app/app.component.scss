@@ -68,3 +68,11 @@ mat-toolbar-row {
     height: 48px;
 }
 
+::ng-deep .mat-fab.mat-accent, ::ng-deep .mat-mini-fab.mat-accent, ::ng-deep .mat-raised-button.mat-warn {
+    background-color: #e91e63;
+    background-image: none !important;
+}
+
+::ng-deep .mat-menu-panel {
+    padding: 0.5rem;
+}

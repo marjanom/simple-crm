@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { AuthProvider } from 'ngx-auth-firebaseui';
 import { User } from 'src/models/user.class';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,13 +15,12 @@ export class LoginComponent implements OnInit {
   dashboardAccessible = false;
 
   providers = AuthProvider;
-  // message = "Congrats, this was successful!"
-  // errorMessage = "Oops, something went wrong! Please try again!"
   user: User;
   userId: string;
 
   constructor(
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -28,14 +28,13 @@ export class LoginComponent implements OnInit {
   }
 
   /**
-   * 
+   * Check & update user-data & redirect, if login successful
    * @param authEvent - JSON-object containing data of Firebase auth-event
    */
    loginSuccessful(authEvent: any) {
-
-    this.checkUserData(authEvent);
-    // redirect to dashboard when login successful
-    window.location.href="/dashboard";  
+      this.checkUserData(authEvent);
+      // redirect to user-list, if login successful  
+      this.router.navigate(['/user']);
 }
 
 
@@ -52,13 +51,38 @@ checkUserData(authEvent) {
   .ref.get()
   .then((doc) => {
     let fetchedUser = doc.data();
-
-    // Check if fetched user data already contain custom properties
-    if (fetchedUser.lastName == undefined) {
-      this.adaptUserEntry(fetchedUser);
-      this.updateUser();
-    }    
+    this.checkData(fetchedUser);
    })
+}
+
+/**
+ * Check fetched data to decide about update or delete of user-entry
+ * @param fetchedUser Data of fetched Firestore-document
+ */
+checkData(fetchedUser: any) {
+  // Check if user is anonymous
+  if (fetchedUser.email === null) {
+    this.deleteAnonymUser();
+  } else {
+    this.checkUserProperties(fetchedUser);
+  }
+}
+
+
+deleteAnonymUser() {
+    this.firestore.collection('users')
+    .doc(this.userId).delete();
+}
+
+/**
+ * Check if fetched user data already contain custom properties; if not, add properties and update user-entry
+ * @param fetchedUser Data of fetched Firestore-document
+ */
+checkUserProperties(fetchedUser: any) {
+  if (fetchedUser.lastName == undefined) {
+    this.adaptUserEntry(fetchedUser);
+    this.updateUser();
+  }  
 }
 
 /**
@@ -66,7 +90,8 @@ checkUserData(authEvent) {
  * @param fetchedUser : JSON-object containing auth-data gathered by Firebase
  */
 adaptUserEntry(fetchedUser) {
-    this.user = new User();
+
+  this.user = new User();
     this.user.displayName = fetchedUser.displayName;
     this.user.email = fetchedUser.email;
     // this.user.emailVerified = fetchedUser.emailVerified;

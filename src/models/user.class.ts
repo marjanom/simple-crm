@@ -26,7 +26,7 @@ export class User {
         this.uid = obj ? obj.uid : '';
         this.displayName = obj ? obj.displayName : '';
         this.photoURL = obj ? obj.photoURL : '';
-        this.emailVerified = obj ? obj.emailVerified : '';
+        this.emailVerified = obj ? obj.emailVerified : false;
         this.providerId = obj ? obj.providerId : '';
         this.phoneNumber = obj ? obj.phoneNumber : '';
     }
