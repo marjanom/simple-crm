@@ -10,9 +10,9 @@ export class User {
     uid?: string;
     displayName?: string;
     photoURL?: string;
-    emailVerified?: boolean;
     providerId?: string;
     phoneNumber?: string;
+    registeredUser?: boolean;
 
     constructor(obj?: any) {
         this.firstName = obj ? obj.firstName : '';
@@ -26,9 +26,9 @@ export class User {
         this.uid = obj ? obj.uid : '';
         this.displayName = obj ? obj.displayName : '';
         this.photoURL = obj ? obj.photoURL : '';
-        this.emailVerified = obj ? obj.emailVerified : false;
         this.providerId = obj ? obj.providerId : '';
         this.phoneNumber = obj ? obj.phoneNumber : '';
+        this.registeredUser = obj ? obj.registeredUser : false;
     }
 
     public toJSON() {
@@ -44,9 +44,9 @@ export class User {
             uid: this.uid,
             displayName: this.displayName,
             photoURL: this.photoURL,
-            emailVerified: this.emailVerified,
             providerId: this.providerId,
-            phoneNumber: this.phoneNumber
+            phoneNumber: this.phoneNumber,
+            registeredUser: this.registeredUser
         };
     }
 }

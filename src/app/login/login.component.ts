@@ -94,14 +94,13 @@ adaptUserEntry(fetchedUser) {
   this.user = new User();
     this.user.displayName = fetchedUser.displayName;
     this.user.email = fetchedUser.email;
-    // this.user.emailVerified = fetchedUser.emailVerified;
     this.user.uid = fetchedUser.uid;
     this.user.providerId = fetchedUser.providerId;
     this.user.photoURL = fetchedUser.photoURL;
     if (this.user.photoURL === '') (this.user.photoURL = 'src/assets/img/user/account.svg');
     this.user.displayName = fetchedUser.displayName;
-    if (this.user.displayName !== '') (this.user.firstName = this.user.displayName)
-    // console.log('user', this.user);
+    if (this.user.displayName !== '') (this.user.firstName = this.user.displayName);
+    this.user.registeredUser = true;
     
 }
 

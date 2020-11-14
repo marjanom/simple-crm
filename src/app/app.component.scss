@@ -76,3 +76,26 @@ mat-toolbar-row {
 ::ng-deep .mat-menu-panel {
     padding: 0.5rem;
 }
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #545454;
+
+    a {
+        margin: 0 0.5rem;
+        color: #fff;
+        text-decoration: none;
+        transition: 0.125ms all ease-in-out;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.link-wrapper {
+    margin: 2rem 0;
+    color: #fff;
+}
