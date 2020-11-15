@@ -1,5 +1,5 @@
 .mat-drawer-container {
-    height: 100vh;
+    height: calc( 100vh - 75px);
 }
 
 .menu-icon {
@@ -61,6 +61,7 @@ mat-toolbar-row {
     padding-left: 56px;
     padding-right: 56px;
     padding-top: 16px;
+    padding-bottom: 16px;
 }
 
 .logo {
@@ -78,6 +79,7 @@ mat-toolbar-row {
 }
 
 footer {
+    height: 75px;
     display: flex;
     justify-content: center;
     align-items: center;

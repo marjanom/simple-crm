@@ -27,7 +27,7 @@ export const environment = {
     nameMinLength: 2,
     // If set, sign-in/up form is not available until email has been verified.
     // Plus protected routes are still protected even though user is connected.
-    guardProtectedRoutesUntilEmailIsVerified: true,
+    guardProtectedRoutesUntilEmailIsVerified: false,
     enableEmailVerification: true, // default: true
   }
 };
