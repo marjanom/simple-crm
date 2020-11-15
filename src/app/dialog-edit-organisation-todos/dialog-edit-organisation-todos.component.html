@@ -1,1 +1,18 @@
-<p>dialog-edit-organisation-todos works!</p>
+<div class="dialog-container">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    
+    <h1 mat-dialog-title>Add Todo</h1>
+    <div mat-dialog-content>
+        <div>
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Name</mat-label>
+                <input [disabled]="loading" [(ngModel)]="todoName" matInput placeholder="Placeholder">
+                <!-- <mat-hint>Please enter a name</mat-hint> -->
+            </mat-form-field>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button [disabled]="loading" mat-button (click)="dialogRef.close()">Cancel</button>
+        <button [disabled]="loading" mat-button (click)="saveTodo()" cdkFocusInitial>Save</button>
+    </div>
+    </div>

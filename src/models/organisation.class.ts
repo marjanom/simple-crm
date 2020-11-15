@@ -2,7 +2,7 @@ import { defaultTodos } from './defaultTodos';
 
 export class Organisation {
     name: string;
-    todos: [];
+    todos: any[];
     admins: [];
     users: [];
 

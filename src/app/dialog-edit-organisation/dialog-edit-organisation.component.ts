@@ -12,6 +12,7 @@ export class DialogEditOrganisationComponent implements OnInit {
 
   organisation = new Organisation();
   organisationId: string;
+  loading = false;
 
   constructor(public dialogRef: MatDialogRef<DialogEditOrganisationComponent>, private firestore: AngularFirestore) { }
 
