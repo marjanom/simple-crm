@@ -1,4 +1,4 @@
-<mat-drawer-container class="mat-drawer-container" autosize>
+<mat-drawer-container class="mat-drawer-container"  autosize>
   <mat-drawer #drawer class="sidenav" [opened]="openDrawer" mode="side">
     <div class="logo-container">
       <img class="logo" src="./assets/img/logo.png" routerLink="/start" routerLinkActive="router-link-active">
@@ -26,7 +26,7 @@
         <span id="app-title">Simple CRM</span>
         
         <ngx-auth-firebaseui-avatar
-          [canViewAccount]="true"
+          [canViewAccount]="false"
           (onSignOut)="lockAccess()"
         ></ngx-auth-firebaseui-avatar>
 
@@ -39,12 +39,12 @@
 
 
   </div>
-
 </mat-drawer-container>
-<!-- <footer>
-  <div class="link-wrapper">
-    <a href="https://developerakademie.com/datenschutz.html">Data Protection</a> |
-    <a href="https://developerakademie.com/impressum.html">Imprint</a>
 
-  </div>
-</footer> -->
+  <footer >
+    <div class="link-wrapper">
+      <a href="https://developerakademie.com/datenschutz.html">Data Protection</a> |
+      <a href="https://developerakademie.com/impressum.html">Imprint</a>
+  
+    </div>
+  </footer>
