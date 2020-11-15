@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   @ViewChild('drawer') drawer: MatDrawer;
 
   openDrawer = true;
+  isStartPage = false;
 
 
   constructor(
@@ -35,7 +36,15 @@ export class AppComponent implements OnInit {
   private checkForStartPage() {
     let url = window.location.href;
     this.openDrawer = !url.includes('start') && !url.includes('login') ;
+
+    if (url.includes('start')) {
+      this.isStartPage = true;
+    } else {
+      this.isStartPage = false;
+    }
   }
+
+  
 
 
   lockAccess() {

@@ -1,5 +1,5 @@
 .mat-drawer-container {
-    height: calc( 100vh - 75px);
+    height: calc(100% - 50px);
 }
 
 .menu-icon {
@@ -84,6 +84,7 @@ footer {
     justify-content: center;
     align-items: center;
     background-color: #545454;
+    height: 50px;
 
     a {
         margin: 0 0.5rem;

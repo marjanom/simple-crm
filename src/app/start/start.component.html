@@ -1,16 +1,26 @@
-<img class="landing-page-overlay background-image" src="./assets/img/background.jpg">
+
 
 <div class="landing-page-overlay landing-page-container">
     <header>
         <nav>
+            <img class="logo" src="./assets/img/logo.png">
             <a *ngIf="!isLoggedIn" href="/login">Login</a>
             <!-- <a *ngIf="isLoggedIn"  href="/dashboard">Dashboard</a> -->
             <a *ngIf="isLoggedIn"  href="/user">Users</a>
-            <a *ngIf="isLoggedIn"  href="/organisation">Organisation</a>
+            <a *ngIf="isLoggedIn"  href="/organisation">Organisation</a>  
         </nav>
-    </header>
 
-    <h1>Easy customer management<br>
-        for small businesses</h1>
+    </header>
+    <div class="header-container">
+
+        <h1>Easy customer management<br>
+            for small businesses</h1>
+        <h2>Learn more</h2>
+        <button mat-fab color="primary">
+            <mat-icon >double_arrow</mat-icon>
+        </button>
+    </div>
+
+    <img class="landing-page-overlay background-image" src="./assets/img/crm_0.jpg">
 
 </div>
