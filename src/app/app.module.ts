@@ -39,6 +39,7 @@ import { OrganisationDetailComponent } from './organisation-detail/organisation-
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import { DialogEditOrganisationComponent } from './dialog-edit-organisation/dialog-edit-organisation.component';
+import { DialogEditOrganisationTodosComponent } from './dialog-edit-organisation-todos/dialog-edit-organisation-todos.component';
 
 
 
@@ -56,7 +57,8 @@ import { DialogEditOrganisationComponent } from './dialog-edit-organisation/dial
     OrganisationComponent,
     DialogAddOrganisationComponent,
     OrganisationDetailComponent,
-    DialogEditOrganisationComponent
+    DialogEditOrganisationComponent,
+    DialogEditOrganisationTodosComponent
   ],
   imports: [
     BrowserModule,

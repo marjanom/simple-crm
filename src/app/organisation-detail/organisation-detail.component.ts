@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Organisation } from 'src/models/organisation.class';
 import { User } from 'src/models/user.class';
+import { DialogEditOrganisationTodosComponent } from '../dialog-edit-organisation-todos/dialog-edit-organisation-todos.component';
 import { DialogEditOrganisationComponent } from '../dialog-edit-organisation/dialog-edit-organisation.component';
 
 @Component({
@@ -60,7 +61,6 @@ export class OrganisationDetailComponent implements OnInit {
     }
   }
 
-
   getOrganisation() {
     if (this.organisationId) {
       this.firestore
@@ -90,9 +90,9 @@ export class OrganisationDetailComponent implements OnInit {
   }
 
   editTodos() {
-    // const dialog = this.dialog.open(DialogEditTodos);
-    // dialog.componentInstance.organisation = new Organisation(this.organisation.toJSON());
-    // dialog.componentInstance.organisationId = this.organisationId;
+    const dialog = this.dialog.open(DialogEditOrganisationTodosComponent);
+    dialog.componentInstance.organisation = new Organisation(this.organisation.toJSON());
+    dialog.componentInstance.organisationId = this.organisationId;
   }
 
   editUsers() {
