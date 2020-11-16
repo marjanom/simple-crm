@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -24,54 +24,49 @@ export class OrganisationDetailComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(paramMap => {
+    this.route.paramMap.subscribe( (paramMap) => {
       this.organisationId = paramMap.get('id');
       console.log('GOT ID', this.organisationId);
-      this.getOrganisation();
+       this.getOrganisation();
     });
   }
 
-  getAdmins() {
+   getAdmins() {
     if (this.organisationId) {
-      this.organisation.admins.forEach(adminId => {
-        this.firestore
+      this.organisation.admins.forEach( (adminId) => {
+         this.firestore
           .collection('users')
-          .doc(adminId)
-          .valueChanges()
-          .subscribe((admin: any) => {
-            this.admins.push(admin);
+          .doc(adminId).ref.get().then(doc => {
+            this.admins.push(doc.data());
           });
       });
       console.log('Retrieved admins', this.admins);
     }
   }
 
-  getUsers() {
+
+   getUsers() {
     if (this.organisationId) {
-      this.organisation.users.forEach(userId => {
-        this.firestore
+      this.organisation.users.forEach( (userId) => {
+         this.firestore
           .collection('users')
-          .doc(userId)
-          .valueChanges()
-          .subscribe((user: any) => {
-            this.users.push(user);
+          .doc(userId).ref.get().then(doc => {
+            this.users.push(doc.data());
           });
       });
       console.log('Retrieved users', this.users);
     }
   }
 
-  getOrganisation() {
+   getOrganisation() {
     if (this.organisationId) {
-      this.firestore
+        this.firestore
         .collection('organisations')
-        .doc(this.organisationId)
-        .valueChanges()
-        .subscribe((organisation: any) => {
-          this.organisation = new Organisation(organisation);
-          console.log('Retrieved organisation', this.organisation);
-          this.getAdmins();
-          this.getUsers();
+        .doc(this.organisationId).ref.get().then( (doc) => {
+          this.organisation = new Organisation(doc.data());
+          console.log('Retrieved Organisation', this.organisation);
+           this.getAdmins();
+           this.getUsers();
         });
     }
   }

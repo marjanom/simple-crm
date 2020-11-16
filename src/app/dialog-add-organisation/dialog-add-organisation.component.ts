@@ -31,7 +31,7 @@ export class DialogAddOrganisationComponent implements OnInit {
 
   saveOrganisation() {
     this.organisation.admins = this.selectedAdmins ? this.selectedAdmins : [];
-    this.organisation.users = this.selectedUsers ? this.selectedAdmins : [];
+    this.organisation.users = this.selectedUsers ? this.selectedUsers : [];
     console.log('Current Organisation is', this.organisation);
     this.loading = true;
 
