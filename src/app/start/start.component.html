@@ -1,26 +1,56 @@
-
-
 <div class="landing-page-overlay landing-page-container">
     <header>
         <nav>
             <img class="logo" src="./assets/img/logo.png">
             <a *ngIf="!isLoggedIn" href="/login">Login</a>
             <!-- <a *ngIf="isLoggedIn"  href="/dashboard">Dashboard</a> -->
-            <a *ngIf="isLoggedIn"  href="/user">Users</a>
-            <a *ngIf="isLoggedIn"  href="/organisation">Organisation</a>  
+            <a *ngIf="isLoggedIn" href="/user">Users</a>
+            <a *ngIf="isLoggedIn" href="/organisation">Organisation</a>
         </nav>
 
     </header>
-    <div class="header-container">
+    <div class="headline-container">
 
         <h1>Easy customer management<br>
             for small businesses</h1>
         <h2>Learn more</h2>
-        <button mat-fab color="primary">
-            <mat-icon >double_arrow</mat-icon>
+        <button mat-fab color="primary" (click)="scrollTo('about')">
+            <mat-icon>double_arrow</mat-icon>
         </button>
     </div>
 
-    <img class="landing-page-overlay background-image" src="./assets/img/crm_0.jpg">
+    <img class="background-image" src="./assets/img/crm.jpg">
 
+    <div id="about" class="about-section">
+        <h3>The smart way to handle user data!</h3>
+        <div class="separator"></div>
+        <span>Keep track of users, organisations and related tasks in a simple, yet efficient way!</span>
+
+        <div class="about-details">
+            <div>
+                <img src="./assets/img/user_data.png">
+                <h3>Manage users & customers</h3>
+                <span>
+                    Store & manage user info such as contact data, birthday & to-dos.
+                </span>
+            </div>
+            <div>
+                <img src="./assets/img/process.jpg">
+                <h3>Manage organisations</h3>
+                <span>
+                    Create organisations and add admins and users. <br>
+                    Define default to-dos for each group and assign them automatically.
+                </span>
+            </div>        
+
+        </div>
+        <div class="separator"></div>
+
+        <div class="btn-container">
+            <button *ngIf="!isLoggedIn" mat-raised-button color="primary" routerLink="/login" routerLinkActive="router-link-active">Try it now!</button>
+            <button *ngIf="isLoggedIn" mat-raised-button color="primary" routerLink="/user" routerLinkActive="router-link-active">Discover more!</button>
+        </div>
+    </div>
+
+    <app-footer></app-footer>
 </div>

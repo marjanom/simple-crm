@@ -20,4 +20,8 @@ export class StartComponent implements OnInit {
     
   }
 
+  scrollTo(anchorId: string): void {
+    document.getElementById(anchorId).scrollIntoView({ behavior: "smooth"});
+  }
+
 }

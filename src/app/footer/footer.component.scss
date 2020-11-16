@@ -1,0 +1,22 @@
+$custom-grey: #545454;
+
+footer {
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $custom-grey;
+    height: 50px;
+    color: #fff;
+
+    a {
+        margin: 0 0.5rem;
+        color: #fff;
+        text-decoration: none;
+        transition: 0.125ms all ease-in-out;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
