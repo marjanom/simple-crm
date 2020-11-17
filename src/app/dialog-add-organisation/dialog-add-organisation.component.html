@@ -16,7 +16,7 @@
             <mat-form-field class="mr-16" appearance="outline">
                 <mat-label>Select admin</mat-label>
                 <mat-select  [(value)]="selectedAdmins" multiple>
-                    <mat-option *ngFor="let user of allUsers" value="{{user.customIdName}}">{{user.firstName}}</mat-option>
+                    <mat-option *ngFor="let admin of allAdmins" value="{{admin.customIdName}}">{{admin.firstName}}</mat-option>
                 </mat-select>
                 <mat-hint>Add admin to organisation</mat-hint>
             </mat-form-field>

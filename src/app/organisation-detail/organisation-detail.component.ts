@@ -24,7 +24,7 @@ export class OrganisationDetailComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe( (paramMap) => {
+    this.route.paramMap.subscribe((paramMap) => {
       this.organisationId = paramMap.get('id');
       console.log('GOT ID', this.organisationId);
       this.getOrganisation();
@@ -32,47 +32,47 @@ export class OrganisationDetailComponent implements OnInit {
   }
 
   async getAdmins() {
-    if (this.organisationId) {
-      this.admins = [];
-      this.organisation.admins.forEach(async (adminId) => {
-        await this.firestore
-          .collection('users')
-          .doc(adminId).ref.get().then(doc => {
-            this.admins.push(doc.data());
-          });
-      });
-      console.log('Retrieved admins', this.admins);
-    }
+
+    this.admins = [];
+    this.organisation.admins.forEach(async (adminId) => {
+      await this.firestore
+        .collection('users')
+        .doc(adminId).ref.get().then(doc => {
+          this.admins.push(doc.data());
+        });
+    });
+    console.log('Retrieved admins', this.admins);
+
   }
 
 
   async getUsers() {
-    if (this.organisationId) {
-      this.users = [];
-      this.organisation.users.forEach(async (userId) => {
-        await this.firestore
-          .collection('users')
-          .doc(userId).ref.get().then(doc => {
-            this.users.push(doc.data());
-          });
-      });
-      console.log('Retrieved users', this.users);
-    }
+
+    this.users = [];
+    this.organisation.users.forEach(async (userId) => {
+      await this.firestore
+        .collection('users')
+        .doc(userId).ref.get().then(doc => {
+          this.users.push(doc.data());
+        });
+    });
+    console.log('Retrieved users', this.users);
+
   }
 
-    getOrganisation() {
-    if (this.organisationId) {
-      this.firestore
-        .collection('organisations')
-        .doc(this.organisationId)
-        .valueChanges()
-        .subscribe(async (organisation) => {
-          this.organisation = new Organisation(organisation);
-          console.log('Retrieved Organisation', this.organisation);
-          await this.getAdmins();
-          await this.getUsers();
-        });
-    }
+  getOrganisation() {
+
+    this.firestore
+      .collection('organisations')
+      .doc(this.organisationId)
+      .valueChanges()
+      .subscribe(async (organisation) => {
+        this.organisation = new Organisation(organisation);
+        console.log('Retrieved Organisation', this.organisation);
+        await this.getAdmins();
+        await this.getUsers();
+      });
+
   }
 
   editAdmins() {
