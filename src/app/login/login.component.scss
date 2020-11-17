@@ -65,14 +65,15 @@ header {
 app-footer {
     position: absolute;
     bottom: 0;
-    width: 100vw;
+    width: 100%;
     z-index: 1;
 }
 
 @media (max-width: 850px) {
     .login-container {
-        width: calc(100vw - 80px);
+        width: calc(100% - 80px);
         padding: 20px 40px;
+        top: 56px;
     }
 
     ngx-auth-firebaseui {
@@ -83,12 +84,16 @@ app-footer {
             margin: 1rem;
         }
     }
+
+    header {
+        display: none;
+    }
 }
 
 // Responsive design - mobile portrait view
 @media (max-width: 450px), (max-height: 600px) {
     .login-container {
-        width: calc(100vw - 40px);
+        width: calc(100% - 40px);
         padding: 20px 20px;
     }
 
