@@ -1,15 +1,17 @@
 <div class="landing-page-overlay landing-page-container">
-    <header>
+    <header >
         <nav>
             <img class="logo" src="./assets/img/logo.png">
             <a *ngIf="!isLoggedIn" href="/login">Login</a>
+
             <!-- <a *ngIf="isLoggedIn"  href="/dashboard">Dashboard</a> -->
+
             <a *ngIf="isLoggedIn" href="/user">Users</a>
             <a *ngIf="isLoggedIn" href="/organisation">Organisation</a>
         </nav>
-
     </header>
-    <div class="headline-container">
+
+    <div class="headline-container mobile-padding">
 
         <h1>Easy customer management<br>
             for small businesses</h1>
@@ -21,7 +23,7 @@
 
     <img class="background-image" src="./assets/img/crm.jpg">
 
-    <div id="about" class="about-section">
+    <div id="about" class="about-section mobile-padding">
         <h3>The smart way to handle user data!</h3>
         <div class="separator"></div>
         <span>Keep track of users, organisations and related tasks in a simple, yet efficient way!</span>

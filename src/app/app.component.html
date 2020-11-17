@@ -1,5 +1,5 @@
-<mat-drawer-container class="mat-drawer-container" [class.full-height]="isLandingPage"  autosize>
-  <mat-drawer #drawer class="sidenav" [opened]="openDrawer" mode="side">
+<mat-drawer-container class="mat-drawer-container" [class.reduced-height]="!isLandingPage" [hasBackdrop]="isMobile" autosize>
+  <mat-drawer #drawer class="sidenav" [opened]="openDrawer" [mode]="drawerMode">
     <div class="logo-container">
       <img class="logo" src="./assets/img/logo.png" routerLink="/start" routerLinkActive="router-link-active">
     </div>
@@ -8,11 +8,14 @@
       <!-- <li routerLink="/" routerLinkActive="router-link-active">
         <mat-icon>fact_check</mat-icon>Dashboard
       </li> -->
-      <li routerLink="/user" routerLinkActive="router-link-active">
+      <li *ngIf="isLoggedIn" routerLink="/user" routerLinkActive="router-link-active">
         <mat-icon>perm_identity</mat-icon>User
       </li>
-      <li routerLink="/organisation" routerLinkActive="router-link-active">
+      <li *ngIf="isLoggedIn" routerLink="/organisation" routerLinkActive="router-link-active">
         <mat-icon>account_tree</mat-icon>Organisation
+      </li>
+      <li *ngIf="!isLoggedIn" routerLink="/login" routerLinkActive="router-link-active">
+        <mat-icon>login</mat-icon>Login
       </li>
     </ul>
 
@@ -33,11 +36,9 @@
       </mat-toolbar-row>
     </mat-toolbar>
 
-    <div class="router-container">
+    <div class="router-container" [class.no-padding]="isMobileLP" id="routerContainer">
       <router-outlet></router-outlet>
     </div>
-
-
   </div>
 </mat-drawer-container>
 <app-footer *ngIf="!isLandingPage"></app-footer>
