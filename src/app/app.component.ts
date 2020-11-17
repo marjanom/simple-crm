@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
     let url = window.location.href;
     this.openDrawer = !url.includes('start') && !url.includes('login') ;
 
-    if (url.includes('start')) {
+    if (url.includes('start') || url.includes('login')) {
       this.isLandingPage = true;
       
     } else {

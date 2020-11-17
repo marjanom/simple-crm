@@ -1,32 +1,24 @@
-
-
 ngx-auth-firebaseui {
     background-color: white;
     padding: 2rem;
     border-radius: 8px;
-    min-width: 25rem;
-    max-width: 35rem !important;
+    width: 100%;
+    max-width: 25rem;
 }
-
-// .mat-button-wrapper {
-//     display: flex;
-//     align-items: center;
-// }
-
-
-
-
-
 
 .background-image {
     object-fit: cover;
+    z-index: -1;
 }
 
 .login-overlay {
     position: absolute;
+    display: flex;
+    flex-direction: column;
     left: 0;
     right: 0;
     top: 0;
+    bottom: 0;
     width: 100%;
     height: 100%;
 }
@@ -37,7 +29,8 @@ ngx-auth-firebaseui {
     align-items: center;
     justify-content: center;
     width: calc(100vw - 160px);
-    padding: 0 80px;
+    padding: 20px 80px 0 80px;
+    height: auto;
 
 }
 
@@ -67,17 +60,77 @@ header {
             }
         }
     }
-
 }
 
-
-.fb {
-    background-color: #4867AA;
-    color: white;
+app-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    z-index: 1;
 }
 
+@media (max-width: 850px) {
+    .login-container {
+        width: calc(100vw - 80px);
+        padding: 20px 40px;
+    }
 
-fa-icon {
-    padding-right: 1rem;
-    font-size: 1.2rem;
+    ngx-auth-firebaseui {
+        padding: 1rem;
+        max-width: 20rem;
+
+        ::ng-deep .mat-card {
+            margin: 1rem;
+        }
+    }
+}
+
+// Responsive design - mobile portrait view
+@media (max-width: 450px), (max-height: 600px) {
+    .login-container {
+        width: calc(100vw - 40px);
+        padding: 20px 20px;
+    }
+
+    ngx-auth-firebaseui {
+        padding: 0.5rem;
+
+        ::ng-deep .mat-card {
+            margin: 0.5rem;
+        }
+
+        ::ng-deep .mat-card-title { 
+            font-size: 18px;
+        }
+    }
+}
+
+// Responsive design - mobile landscape view
+@media (max-height: 600px) {
+    header {
+        // position: unset;
+
+        nav {
+            padding: 12px;
+        }
+    }
+
+    .login-container {
+        padding-top: 8px;
+    }
+
+    
+    ngx-auth-firebaseui {
+        overflow-y: scroll;
+        margin-bottom: 1rem;
+
+        ::ng-deep .mat-tab-label {
+            height: 32px;
+            padding: 0 12px;
+       }
+
+        ::ng-deep .mat-form-field-infix {
+            border-top: .5em;
+        }
+    }
 }
