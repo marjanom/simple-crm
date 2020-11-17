@@ -41,6 +41,7 @@ import { MatPasswordStrengthModule } from '@angular-material-extensions/password
 import { DialogEditOrganisationComponent } from './dialog-edit-organisation/dialog-edit-organisation.component';
 import { DialogEditOrganisationTodosComponent } from './dialog-edit-organisation-todos/dialog-edit-organisation-todos.component';
 import { FooterComponent } from './footer/footer.component';
+import { DialogEditUserTodosComponent } from './dialog-edit-user-todos/dialog-edit-user-todos.component';
 
 
 
@@ -60,7 +61,8 @@ import { FooterComponent } from './footer/footer.component';
     OrganisationDetailComponent,
     DialogEditOrganisationComponent,
     DialogEditOrganisationTodosComponent,
-    FooterComponent
+    FooterComponent,
+    DialogEditUserTodosComponent
   ],
   imports: [
     BrowserModule,

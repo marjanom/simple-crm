@@ -5,6 +5,7 @@ import { User } from 'src/models/user.class';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogEditAddressComponent } from '../dialog-edit-address/dialog-edit-address.component';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
+import { DialogEditUserTodosComponent } from '../dialog-edit-user-todos/dialog-edit-user-todos.component';
 
 @Component({
   selector: 'app-user-detail',
@@ -51,6 +52,12 @@ export class UserDetailComponent implements OnInit {
 
   editUserDetail() {
     const dialog = this.dialog.open(DialogEditUserComponent);
+    dialog.componentInstance.user = new User(this.user.toJSON());
+    dialog.componentInstance.userId = this.userId;
+  }
+
+  editUserTodos() {
+    const dialog = this.dialog.open(DialogEditUserTodosComponent);
     dialog.componentInstance.user = new User(this.user.toJSON());
     dialog.componentInstance.userId = this.userId;
   }

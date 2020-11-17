@@ -14,7 +14,7 @@
             <mat-form-field class="mr-16" appearance="outline">
                 <mat-label>Remove Todo</mat-label>
                 <mat-select  [(value)]="selectedTodos" multiple>
-                    <mat-option *ngFor="let todo of organisation.todos;let todoIndex = index;" [value]="todo">{{todo.name}}</mat-option>
+                    <mat-option *ngFor="let todo of user.todos;let todoIndex = index;" [value]="todo">{{todo.name}}</mat-option>
                 </mat-select>
                 <mat-hint>Remove Todos from Organisation</mat-hint>
             </mat-form-field>

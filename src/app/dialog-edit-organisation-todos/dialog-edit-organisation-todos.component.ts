@@ -23,7 +23,7 @@ export class DialogEditOrganisationTodosComponent implements OnInit {
 
   }
 
-  async saveTodo() {
+  async saveChanges() {
     this.loading = true;
     
     if (this.todoName) {
