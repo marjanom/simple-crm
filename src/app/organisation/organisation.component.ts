@@ -21,7 +21,7 @@ export class OrganisationComponent implements OnInit {
       .collection('organisations')
       .valueChanges({idField: 'customIdName'})
       .subscribe((changes: any) => {
-        console.log('Received changes from DB', changes);
+        console.log('Received all Organisations changes from DB', changes);
         this.allOrganisations = changes;
       });
   }

@@ -27,14 +27,15 @@ export class OrganisationDetailComponent implements OnInit {
     this.route.paramMap.subscribe( (paramMap) => {
       this.organisationId = paramMap.get('id');
       console.log('GOT ID', this.organisationId);
-       this.getOrganisation();
+      this.getOrganisation();
     });
   }
 
-   getAdmins() {
+  async getAdmins() {
     if (this.organisationId) {
-      this.organisation.admins.forEach( (adminId) => {
-         this.firestore
+      this.admins = [];
+      this.organisation.admins.forEach(async (adminId) => {
+        await this.firestore
           .collection('users')
           .doc(adminId).ref.get().then(doc => {
             this.admins.push(doc.data());
@@ -45,10 +46,11 @@ export class OrganisationDetailComponent implements OnInit {
   }
 
 
-   getUsers() {
+  async getUsers() {
     if (this.organisationId) {
-      this.organisation.users.forEach( (userId) => {
-         this.firestore
+      this.users = [];
+      this.organisation.users.forEach(async (userId) => {
+        await this.firestore
           .collection('users')
           .doc(userId).ref.get().then(doc => {
             this.users.push(doc.data());
@@ -58,15 +60,17 @@ export class OrganisationDetailComponent implements OnInit {
     }
   }
 
-   getOrganisation() {
+    getOrganisation() {
     if (this.organisationId) {
-        this.firestore
+      this.firestore
         .collection('organisations')
-        .doc(this.organisationId).ref.get().then( (doc) => {
-          this.organisation = new Organisation(doc.data());
+        .doc(this.organisationId)
+        .valueChanges()
+        .subscribe(async (organisation) => {
+          this.organisation = new Organisation(organisation);
           console.log('Retrieved Organisation', this.organisation);
-           this.getAdmins();
-           this.getUsers();
+          await this.getAdmins();
+          await this.getUsers();
         });
     }
   }

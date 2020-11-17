@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
+import * as firebase from 'firebase';
 import { Organisation } from 'src/models/organisation.class';
 
 @Component({
@@ -37,23 +38,13 @@ export class DialogAddOrganisationComponent implements OnInit {
 
     if (this.selectedAdmins) {
       this.selectedAdmins.forEach(adminId => {
-        this.firestore
-          .collection('users')
-          .doc(adminId)
-          .set({
-            todos: this.organisation.todos
-          }, { merge: true });
+        this.updateUserTodos(adminId);
       });
     }
 
     if (this.selectedUsers) {
       this.selectedUsers.forEach(userId => {
-        this.firestore
-          .collection('users')
-          .doc(userId)
-          .set({
-            todos: this.organisation.todos
-          }, { merge: true });
+        this.updateUserTodos(userId);
       });
     }
 
@@ -64,6 +55,15 @@ export class DialogAddOrganisationComponent implements OnInit {
         this.loading = false;
         console.log('Adding organisation finsihed', result);
         this.dialogRef.close();
+      });
+  }
+
+  updateUserTodos(id: any) {
+    this.firestore
+      .collection('users')
+      .doc(id)
+      .update({
+        todo: firebase.firestore.FieldValue.arrayUnion(...this.organisation.todos)
       });
   }
 }
