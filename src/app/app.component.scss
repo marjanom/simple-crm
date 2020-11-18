@@ -109,3 +109,10 @@ mat-toolbar-row {
         height: calc(100% - 32px);
     }
 }
+
+@media (max-width: 400px){
+    .router-container{
+        padding-right: 0;
+        padding-left:  0;
+    }
+}

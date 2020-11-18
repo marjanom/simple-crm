@@ -54,3 +54,30 @@ mat-card {
         text-align: start;
     }
 }
+
+@media (max-width: 600px){
+    .user-table tr td{
+        font-size: 12px;
+        &:last-child{
+            display: none;
+        }
+    }
+
+    .user-table tr th{
+        font-size: 12px;
+        &:last-child{
+              display: none;
+        }
+    }
+}
+
+
+@media (max-width: 400px){
+    .user-table tr td{
+        font-size: 10px;
+    }
+
+    .user-table tr th{
+        font-size: 10px;
+    }
+}

@@ -31,3 +31,11 @@
     right: 0;
     top: 0;
 }
+
+@media (max-width: 600px) {
+    .organisation-detail-header {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}

@@ -1,6 +1,6 @@
 .user-detail-header {
     min-height: 250px;
-    background-color: #E91E63;
+    background-color: #e91e63;
     color: white;
     display: flex;
     align-items: flex-end;
@@ -30,4 +30,12 @@
     position: absolute;
     right: 0;
     top: 0;
+}
+
+@media (max-width: 600px) {
+    .user-detail-header {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 }

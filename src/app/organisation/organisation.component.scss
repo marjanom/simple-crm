@@ -54,3 +54,24 @@ mat-card {
         text-align: start;
     }
 }
+
+@media (max-width: 600px){
+    .organisation-table tr td{
+        font-size: 12px;
+    }
+
+    .organisation-table tr th{
+        font-size: 12px;
+    }
+}
+
+
+@media (max-width: 400px){
+    .organisation-table tr td{
+        font-size: 10px;
+    }
+
+    .organisation-table tr th{
+        font-size: 10px;
+    }
+}

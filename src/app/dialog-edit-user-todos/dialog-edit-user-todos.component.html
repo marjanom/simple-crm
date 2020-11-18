@@ -16,7 +16,7 @@
                 <mat-select  [(value)]="selectedTodos" multiple>
                     <mat-option *ngFor="let todo of user.todos;let todoIndex = index;" [value]="todo">{{todo.name}}</mat-option>
                 </mat-select>
-                <mat-hint>Remove Todos from Organisation</mat-hint>
+                <mat-hint>Remove Todos from User's List</mat-hint>
             </mat-form-field>
         </div>
     </div>

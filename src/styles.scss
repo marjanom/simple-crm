@@ -39,3 +39,10 @@ body {
     right: 56px;
     bottom: 56px;
 }
+
+@media (max-width: 400px){
+    .add-btn{
+        right: 14px;
+        bottom: 14px;
+    }
+}
