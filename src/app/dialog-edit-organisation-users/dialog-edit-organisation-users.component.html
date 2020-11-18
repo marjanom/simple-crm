@@ -1,0 +1,30 @@
+<div class="dialog-container">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    
+    <h1 mat-dialog-title>Edit Users</h1>
+    <div mat-dialog-content>
+        <div>
+            <mat-form-field class="mr-16" appearance="outline">
+                <mat-label>Add Users</mat-label>
+                <mat-select  [(value)]="selectedUsersToAdd" multiple>
+                    <mat-option *ngFor="let user of usersOut;" [value]="user">{{user.firstName}}</mat-option>
+                </mat-select>
+                <mat-hint>Add Users to Organisation</mat-hint>
+            </mat-form-field>
+        </div>
+       
+        <div>
+            <mat-form-field class="mr-16" appearance="outline">
+                <mat-label>Remove Users</mat-label>
+                <mat-select  [(value)]="selectedUsersToRemove" multiple>
+                    <mat-option *ngFor="let user of usersIn;" [value]="user">{{user.firstName}}</mat-option>
+                </mat-select>
+                <mat-hint>Remove Users from Organisation</mat-hint>
+            </mat-form-field>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button [disabled]="loading" mat-button (click)="dialogRef.close()">Cancel</button>
+        <button [disabled]="loading" mat-button (click)="saveChanges()" cdkFocusInitial>Save</button>
+    </div>
+    </div>

@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Organisation } from 'src/models/organisation.class';
 import { User } from 'src/models/user.class';
 import { DialogEditOrganisationTodosComponent } from '../dialog-edit-organisation-todos/dialog-edit-organisation-todos.component';
+import { DialogEditOrganisationUsersComponent } from '../dialog-edit-organisation-users/dialog-edit-organisation-users.component';
 import { DialogEditOrganisationComponent } from '../dialog-edit-organisation/dialog-edit-organisation.component';
 
 @Component({
@@ -76,7 +77,7 @@ export class OrganisationDetailComponent implements OnInit {
   }
 
   editAdmins() {
-    // const dialog = this.dialog.open(DialogEditAdmins);
+    // const dialog = this.dialog.open(DialogEditOrganisationAdminsComponent);
     // dialog.componentInstance.organisation = new Organisation(this.organisation.toJSON());
     // dialog.componentInstance.organisationId = this.organisationId;
   }
@@ -95,9 +96,11 @@ export class OrganisationDetailComponent implements OnInit {
   }
 
   editUsers() {
-    // const dialog = this.dialog.open(DialogEditUsers);
-    // dialog.componentInstance.organisation = new Organisation(this.organisation.toJSON());
-    // dialog.componentInstance.organisationId = this.organisationId;
+    const dialog = this.dialog.open(DialogEditOrganisationUsersComponent);
+    dialog.componentInstance.organisation = new Organisation(this.organisation.toJSON());
+    dialog.componentInstance.organisationId = this.organisationId;
+    dialog.componentInstance.usersIn = this.users;
+    //dialog.componentInstance.adminsIn = this.admins;
   }
 
 }
