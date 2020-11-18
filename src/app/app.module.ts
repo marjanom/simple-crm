@@ -43,6 +43,7 @@ import { DialogEditOrganisationTodosComponent } from './dialog-edit-organisation
 import { FooterComponent } from './footer/footer.component';
 import { DialogEditUserTodosComponent } from './dialog-edit-user-todos/dialog-edit-user-todos.component';
 import { DialogEditOrganisationUsersComponent } from './dialog-edit-organisation-users/dialog-edit-organisation-users.component';
+import { DialogEditOrganisationAdminsComponent } from './dialog-edit-organisation-admins/dialog-edit-organisation-admins.component';
 
 
 
@@ -64,7 +65,8 @@ import { DialogEditOrganisationUsersComponent } from './dialog-edit-organisation
     DialogEditOrganisationTodosComponent,
     FooterComponent,
     DialogEditUserTodosComponent,
-    DialogEditOrganisationUsersComponent
+    DialogEditOrganisationUsersComponent,
+    DialogEditOrganisationAdminsComponent
   ],
   imports: [
     BrowserModule,

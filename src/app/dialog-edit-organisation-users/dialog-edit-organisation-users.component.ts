@@ -17,7 +17,7 @@ export class DialogEditOrganisationUsersComponent implements OnInit {
   loading = false;
   usersIn: any[];
   usersOut:any [];
-  // adminsIn = [];
+  adminsIn = [];
   // adminsOut = [];
   selectedUsersToAdd: any[];
   selectedUsersToRemove: any[];
