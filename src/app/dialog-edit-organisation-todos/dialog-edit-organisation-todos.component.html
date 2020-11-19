@@ -10,7 +10,7 @@
                 <mat-hint>Please enter a name</mat-hint>
             </mat-form-field>
         </div>
-        <div>
+        <div *ngIf="organisation.todos.length > 0">
             <mat-form-field class="mr-16" appearance="outline">
                 <mat-label>Remove Todo</mat-label>
                 <mat-select  [(value)]="selectedTodos" multiple>

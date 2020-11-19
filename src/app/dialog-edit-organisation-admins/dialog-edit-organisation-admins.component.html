@@ -3,7 +3,7 @@
     
     <h1 mat-dialog-title>Edit Users</h1>
     <div mat-dialog-content>
-        <div>
+        <div *ngIf="adminsOut.length > 0">
             <mat-form-field class="mr-16" appearance="outline">
                 <mat-label>Add Admins</mat-label>
                 <mat-select  [(value)]="selectedAdminsToAdd" multiple>
@@ -13,7 +13,7 @@
             </mat-form-field>
         </div>
        
-        <div>
+        <div *ngIf="adminsIn.length > 0">
             <mat-form-field class="mr-16" appearance="outline">
                 <mat-label>Remove Admins</mat-label>
                 <mat-select  [(value)]="selectedAdminsToRemove" multiple>

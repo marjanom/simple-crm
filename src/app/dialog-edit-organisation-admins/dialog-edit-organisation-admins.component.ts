@@ -29,7 +29,7 @@ export class DialogEditOrganisationAdminsComponent implements OnInit {
   ngOnInit(): void {
     this.firestore
     .collection('users')
-    .valueChanges()
+    .valueChanges({idField: 'customIdName'})
     .subscribe((changes: any) => {
       console.log('Received changes from DB', changes);
       //this.usersOut = this.getUsersOut(changes);
@@ -53,8 +53,29 @@ export class DialogEditOrganisationAdminsComponent implements OnInit {
     });
   }
 
-  saveChanges(){
+  async saveChanges(){
+    this.loading = true;
+    if (this.selectedAdminsToAdd) {
+      console.log(this.selectedAdminsToAdd);
+      await this.addAdmins(this.selectedAdminsToAdd);
+    }
+
+    if (this.selectedAdminsToRemove) {
+      console.log(this.selectedAdminsToRemove);
+      await this.removeAdmins(this.selectedAdminsToRemove);
+    }
+
+    console.log("NEW ADMINS LIST: ", this.organisation.admins);
+    this.loading = false;
     this.dialogRef.close();
+  }
+
+  async addAdmins(admins: any[]){
+    //add admins uid to organisation
+  }
+
+  async removeAdmins(admins: any[]){
+    //add admins uid to organisation
   }
 
 }
