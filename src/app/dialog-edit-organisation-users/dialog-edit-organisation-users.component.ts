@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Organisation } from 'src/models/organisation.class';
 //var isEqual = require('lodash.isequal');
 import * as _ from 'lodash';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-dialog-edit-organisation-users',
@@ -15,46 +16,67 @@ export class DialogEditOrganisationUsersComponent implements OnInit {
   organisation = new Organisation();
   organisationId: string;
   loading = false;
-  usersIn: any[];
-  usersOut:any [];
-  adminsIn = [];
-  // adminsOut = [];
+  usersIn = [];
+  usersOut = [];
   selectedUsersToAdd: any[];
   selectedUsersToRemove: any[];
-  // selectedAdminsToAdd: any[];
-  // selectedAdminsToRemove: any[];
-  
+
   constructor(public dialogRef: MatDialogRef<DialogEditOrganisationUsersComponent>, private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
     this.firestore
-    .collection('users')
-    .valueChanges()
-    .subscribe((changes: any) => {
-      console.log('Received changes from DB', changes);
-      this.usersOut = this.getUsersOut(changes);
-      //this.adminsOut = this.getAdminsOut(changes);
-      console.log("Users In: ",this.usersIn,"Users Out: ", this.usersOut);
-      //console.log("Admins In: ",this.adminsIn,"Admins Out: ", this.adminsOut);
-    });
+      .collection('users')
+      .valueChanges({idField: 'customIdName'})
+      .subscribe((changes: any) => {
+        console.log('Received changes from DB', changes);
+        this.usersOut = this.getUsersOut(changes);
+        console.log("Users In: ", this.usersIn, "Users Out: ", this.usersOut);
+      });
   }
 
-  getUsersOut(colection: any[]){
+  getUsersOut(colection: any[]) {
     return colection.filter((user) => {
-      console.log(this.isInside(user));
       return !(user.registeredUser || this.isInside(user));
-     
     });
   }
 
-  isInside(user: any): boolean{
-    return this.usersIn.find(userIn =>{
+  isInside(user: any): boolean {
+    return this.usersIn.find(userIn => {
       return _.isEqual(userIn, user);
     });
   }
 
-  saveChanges(){
+  async saveChanges() {
+    this.loading = true;
+    if (this.selectedUsersToAdd) {
+      //TODO: add Organisation Todos
+      console.log(this.selectedUsersToAdd);
+      await this.addUsers(this.selectedUsersToAdd);
+    }
+
+    if (this.selectedUsersToRemove) {
+      //TODO: remove Organisation Todos
+      console.log(this.selectedUsersToRemove);
+      await this.removeUsers(this.selectedUsersToRemove);
+    }
+
+    console.log("NEW ADMINS LIST: ", this.organisation.users);
+    this.loading = false;
     this.dialogRef.close();
+  }
+
+  async addUsers(userIds: any[]) {
+    await this.firestore
+      .collection('organisations')
+      .doc(this.organisationId)
+      .update({ users: firebase.firestore.FieldValue.arrayUnion(...userIds) });
+  }
+
+  async removeUsers(usersId: any[]) {
+    await this.firestore
+      .collection('organisations')
+      .doc(this.organisationId)
+      .update({ users: firebase.firestore.FieldValue.arrayRemove(...usersId) });
   }
 
 }

@@ -58,6 +58,7 @@ mat-card {
 @media (max-width: 600px){
     .organisation-table tr td{
         font-size: 12px;
+        height: 38px;
     }
 
     .organisation-table tr th{
@@ -69,6 +70,7 @@ mat-card {
 @media (max-width: 400px){
     .organisation-table tr td{
         font-size: 10px;
+        height: 28px;
     }
 
     .organisation-table tr th{

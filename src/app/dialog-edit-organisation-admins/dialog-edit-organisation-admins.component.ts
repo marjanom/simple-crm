@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Organisation } from 'src/models/organisation.class';
 //var isEqual = require('lodash.isequal');
 import * as _ from 'lodash';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-dialog-edit-organisation-admins',
@@ -15,52 +16,46 @@ export class DialogEditOrganisationAdminsComponent implements OnInit {
   organisation = new Organisation();
   organisationId: string;
   loading = false;
-  //usersIn: any[];
-  //usersOut:any [];
   adminsIn = [];
   adminsOut = [];
-  //selectedUsersToAdd: any[];
-  //selectedUsersToRemove: any[];
-   selectedAdminsToAdd: any[];
+  selectedAdminsToAdd: any[];
   selectedAdminsToRemove: any[];
-  
+
   constructor(public dialogRef: MatDialogRef<DialogEditOrganisationAdminsComponent>, private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
     this.firestore
-    .collection('users')
-    .valueChanges({idField: 'customIdName'})
-    .subscribe((changes: any) => {
-      console.log('Received changes from DB', changes);
-      //this.usersOut = this.getUsersOut(changes);
-      this.adminsOut = this.getAdminsOut(changes);
-      //console.log("Users In: ",this.usersIn,"Users Out: ", this.usersOut);
-      console.log("Admins In: ",this.adminsIn,"Admins Out: ", this.adminsOut);
-    });
+      .collection('users')
+      .valueChanges({ idField: 'customIdName' })
+      .subscribe((changes: any) => {
+        console.log('Received changes from DB', changes);
+        this.adminsOut = this.getAdminsOut(changes);
+        console.log("Admins In: ", this.adminsIn, "Admins Out: ", this.adminsOut);
+      });
   }
 
-  getAdminsOut(colection: any[]){
+  getAdminsOut(colection: any[]) {
     return colection.filter((admin) => {
-      console.log(this.isInside(admin));
       return admin.registeredUser && !this.isInside(admin);
-     
     });
   }
 
-  isInside(admin: any): boolean{
-    return this.adminsIn.find(adminIn =>{
+  isInside(admin: any): boolean {
+    return this.adminsIn.find(adminIn => {
       return _.isEqual(adminIn, admin);
     });
   }
 
-  async saveChanges(){
+  async saveChanges() {
     this.loading = true;
     if (this.selectedAdminsToAdd) {
+      //TODO: add Organisation Todos
       console.log(this.selectedAdminsToAdd);
       await this.addAdmins(this.selectedAdminsToAdd);
     }
 
     if (this.selectedAdminsToRemove) {
+      //TODO: add Organisation Todos
       console.log(this.selectedAdminsToRemove);
       await this.removeAdmins(this.selectedAdminsToRemove);
     }
@@ -70,12 +65,18 @@ export class DialogEditOrganisationAdminsComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  async addAdmins(admins: any[]){
-    //add admins uid to organisation
+  async addAdmins(adminIds: any[]) {
+    await this.firestore
+      .collection('organisations')
+      .doc(this.organisationId)
+      .update({ admins: firebase.firestore.FieldValue.arrayUnion(...adminIds) });
   }
 
-  async removeAdmins(admins: any[]){
-    //add admins uid to organisation
+  async removeAdmins(adminIds: any[]) {
+    await this.firestore
+      .collection('organisations')
+      .doc(this.organisationId)
+      .update({ admins: firebase.firestore.FieldValue.arrayRemove(...adminIds) });
   }
 
 }

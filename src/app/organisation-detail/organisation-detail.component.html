@@ -1,68 +1,87 @@
 <mat-card class="organisation-detail-header">
-    <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="organisationMenu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
+  <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="organisationMenu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
 
-      <mat-menu #organisationMenu="matMenu">
-        <button mat-menu-item (click)="editOrganisationDetail()">Edit</button>
-      </mat-menu>
+  <mat-menu #organisationMenu="matMenu">
+    <button mat-menu-item (click)="editOrganisationDetail()">Edit</button>
+    <button mat-menu-item (click)="deleteOrganisation()">Delete</button>
+  </mat-menu>
 
-    <img src="./assets/img/profile.png">
-    <div class="organisation-details">
-        <h2>{{ organisation.name }}</h2>
-    </div>
+  <img src="./assets/img/profile.png">
+  <div class="organisation-details">
+    <h2>{{ organisation.name }}</h2>
+  </div>
 </mat-card>
 
-
-
 <mat-card class="mt-32">
-    <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="adminsMenu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      
-      <mat-menu #adminsMenu="matMenu">
-        <button mat-menu-item (click)="editAdmins()">Edit</button>
-      </mat-menu>
+  <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="adminsMenu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
 
-    <mat-card-title>Admins</mat-card-title>
+  <mat-menu #adminsMenu="matMenu">
+    <button mat-menu-item (click)="editAdmins()">Edit</button>
+  </mat-menu>
 
+  <mat-card-title>Admins</mat-card-title>
+
+  <div *ngIf="admins.length > 0">
     <mat-card-content *ngFor="let admin of admins;">
-        {{ admin.firstName }} {{ admin.lastName }}<br>
-        {{ admin.street }}<br>
-        {{ admin.zipCode }} {{ admin.city }}
+      {{ admin.firstName }} {{ admin.lastName }}<br>
+      {{ admin.street }}<br>
+      {{ admin.zipCode }} {{ admin.city }}
     </mat-card-content>
+  </div>
+
+  <mat-card-content *ngIf="admins.length == 0">
+    No Admins inside Organisation
+  </mat-card-content>
 </mat-card>
 
 <mat-card class="mt-32">
-    <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="usersMenu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      
-      <mat-menu #usersMenu="matMenu">
-        <button mat-menu-item (click)="editUsers()">Edit</button>
-      </mat-menu>
+  <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="usersMenu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
 
-    <mat-card-title>Users</mat-card-title>
+  <mat-menu #usersMenu="matMenu">
+    <button mat-menu-item (click)="editUsers()">Edit</button>
+  </mat-menu>
 
+  <mat-card-title>Users</mat-card-title>
+
+  <div *ngIf="users.length > 0">
     <mat-card-content *ngFor="let user of users;">
-        {{ user.firstName }} {{ user.lastName }}<br>
-        {{ user.street }}<br>
-        {{ user.zipCode }} {{ user.city }}
+      {{ user.firstName }} {{ user.lastName }}<br>
+      {{ user.street }}<br>
+      {{ user.zipCode }} {{ user.city }}
     </mat-card-content>
+  </div>
+
+  <mat-card-content *ngIf="users.length == 0">
+    No Users inside Organisation
+  </mat-card-content>
+
 </mat-card>
 
 <mat-card class="mt-32">
-    <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="todosMenu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      
-      <mat-menu #todosMenu="matMenu">
-        <button mat-menu-item (click)="editTodos()">Edit</button>
-      </mat-menu>
+  <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="todosMenu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
 
-    <mat-card-title>Todos</mat-card-title>
+  <mat-menu #todosMenu="matMenu">
+    <button mat-menu-item (click)="editTodos()">Edit</button>
+  </mat-menu>
 
+  <mat-card-title>Todos</mat-card-title>
+
+  <div *ngIf="organisation.todos.length > 0">
     <mat-card-content *ngFor="let todo of organisation.todos;">
-        {{ todo.name }}<br>
+      {{ todo.name }}<br>
     </mat-card-content>
+  </div>
+
+  <mat-card-content *ngIf="organisation.todos.length == 0">
+    Organisation has no Todos
+  </mat-card-content>
+
 </mat-card>

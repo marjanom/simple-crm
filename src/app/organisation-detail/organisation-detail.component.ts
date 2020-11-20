@@ -26,64 +26,73 @@ export class OrganisationDetailComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((paramMap) => {
+    this.route.paramMap.subscribe( (paramMap) => {
       this.organisationId = paramMap.get('id');
       console.log('GOT ID', this.organisationId);
-      this.getOrganisation();
+       this.getOrganisation();
     });
   }
 
-  async getAdmins() {
-
-    this.admins = [];
-    this.organisation.admins.forEach(async (adminId) => {
-      await this.firestore
-        .collection('users')
-        .doc(adminId).ref.get().then(doc => {
-          this.admins.push(doc.data());
-        });
-    });
-    console.log('Retrieved admins', this.admins);
-
-  }
-
-
-  async getUsers() {
-
-    this.users = [];
-    this.organisation.users.forEach(async (userId) => {
-      await this.firestore
-        .collection('users')
-        .doc(userId).ref.get().then(doc => {
-          this.users.push(doc.data());
-        });
-    });
-    console.log('Retrieved users', this.users);
-
-  }
-
-  getOrganisation() {
-
+   getAdmins() {
     this.firestore
-      .collection('organisations')
-      .doc(this.organisationId)
-      .valueChanges()
-      .subscribe(async (organisation) => {
-        this.organisation = new Organisation(organisation);
-        console.log('Retrieved Organisation', this.organisation);
-        await this.getAdmins();
-        await this.getUsers();
-      });
-
+      .collection('users')
+      .valueChanges({ idField: 'customIdName' })
+      .subscribe(changes => {
+        this.admins = changes.filter((change) => {
+          return this.organisation.admins.includes(change.customIdName);
+        });
+        console.log("Retrieved Admins: ", this.admins);
+      })
   }
 
-  editAdmins() {
-    const dialog = this.dialog.open(DialogEditOrganisationAdminsComponent);
-    dialog.componentInstance.organisation = new Organisation(this.organisation.toJSON());
-    dialog.componentInstance.organisationId = this.organisationId;
-     dialog.componentInstance.adminsIn = this.admins;
+   getUsers() {
+    this.firestore
+      .collection('users')
+      .valueChanges({ idField: 'customIdName' })
+      .subscribe(changes => {
+        this.users = changes.filter((change) => {
+          return this.organisation.users.includes(change.customIdName);
+        });
+        console.log("Retrieved Users: ", this.users);
+      })
   }
 
+  // async getAdmins() {
+  //   this.admins = [];
+  //   this.organisation.admins.forEach(async (adminId) => {
+  //     await this.firestore
+  //       .collection('users')
+  //       .doc(adminId).ref.get().then(doc => {
+  //         this.admins.push(doc.data());
+  //       });
+  //   });
+  //   console.log('Retrieved admins', this.admins);
+  // }
+
+  // async getUsers() {
+  //   this.users = [];
+  //   this.organisation.users.forEach(async (userId) => {
+  //     await this.firestore
+  //       .collection('users')
+  //       .doc(userId).ref.get().then(doc => {
+  //         this.users.push(doc.data());
+  //       });
+  //   });
+  //   console.log('Retrieved users', this.users);
+  // }
+
+    getOrganisation() {
+    this.firestore
+       .collection('organisations')
+       .doc(this.organisationId)
+       .valueChanges()
+       .subscribe((organisation) => {
+         this.organisation = new Organisation(organisation);
+         console.log('Retrieved Organisation', this.organisation);
+         this.getAdmins();
+         this.getUsers();
+       });
+  }
 
   editOrganisationDetail() {
     const dialog = this.dialog.open(DialogEditOrganisationComponent);
@@ -91,10 +100,18 @@ export class OrganisationDetailComponent implements OnInit {
     dialog.componentInstance.organisationId = this.organisationId;
   }
 
-  editTodos() {
-    const dialog = this.dialog.open(DialogEditOrganisationTodosComponent);
+  //TODO
+  deleteOrganisation() {
+    // const dialog = this.dialog.open(DialogDeleteOrganisationComponent);
+    // dialog.componentInstance.organisation = new Organisation(this.organisation.toJSON());
+    // dialog.componentInstance.organisationId = this.organisationId;
+  }
+
+  editAdmins() {
+    const dialog = this.dialog.open(DialogEditOrganisationAdminsComponent);
     dialog.componentInstance.organisation = new Organisation(this.organisation.toJSON());
     dialog.componentInstance.organisationId = this.organisationId;
+    dialog.componentInstance.adminsIn = this.admins;
   }
 
   editUsers() {
@@ -102,7 +119,11 @@ export class OrganisationDetailComponent implements OnInit {
     dialog.componentInstance.organisation = new Organisation(this.organisation.toJSON());
     dialog.componentInstance.organisationId = this.organisationId;
     dialog.componentInstance.usersIn = this.users;
-    //dialog.componentInstance.adminsIn = this.admins;
   }
 
+  editTodos() {
+    const dialog = this.dialog.open(DialogEditOrganisationTodosComponent);
+    dialog.componentInstance.organisation = new Organisation(this.organisation.toJSON());
+    dialog.componentInstance.organisationId = this.organisationId;
+  }
 }

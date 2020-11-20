@@ -3,8 +3,8 @@ import { defaultTodos } from './defaultTodos';
 export class Organisation {
     name: string;
     todos: any[];
-    admins: [];
-    users: [];
+    admins: any[];
+    users: any[];
 
     constructor(obj?: any) {
         this.name = obj ? obj.name : '';

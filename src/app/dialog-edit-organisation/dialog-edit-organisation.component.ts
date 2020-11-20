@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
+import { collections } from 'ngx-auth-firebaseui';
 import { Organisation } from 'src/models/organisation.class';
 
 @Component({
@@ -17,6 +18,20 @@ export class DialogEditOrganisationComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<DialogEditOrganisationComponent>, private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
+  }
+
+  async saveChanges(){
+    this.loading = true;
+
+    await this.firestore
+    .collection('organisations')
+    .doc(this.organisationId)
+    .set({
+      name: this.organisation.name
+    }, { merge: true});
+
+    this.loading = true;
+    this.dialogRef.close();
   }
 
 }

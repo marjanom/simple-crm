@@ -5,27 +5,29 @@
     <div mat-dialog-content>
 
         <div>
+            <!-- TODO: FORM VALIDATION, NAME REQUIRED , CAN BE AN EMPTY OR ONLY BLANKSPACE CONTAINING STRING -->
             <mat-form-field class="mr-16" appearance="outline">
                 <mat-label>Name</mat-label>
                 <input [disabled]="loading" [(ngModel)]="organisation.name" matInput placeholder="Name" required>
-                <!-- <mat-hint>Please enter a name</mat-hint> -->
             </mat-form-field>
         </div>
 
-        <div>
+        <div *ngIf="allAdmins.length > 0">
             <mat-form-field class="mr-16" appearance="outline">
                 <mat-label>Select admin</mat-label>
-                <mat-select  [(value)]="selectedAdmins" multiple>
-                    <mat-option *ngFor="let admin of allAdmins" value="{{admin.customIdName}}">{{admin.firstName}}</mat-option>
+                <mat-select [(value)]="selectedAdmins" multiple>
+                    <mat-option *ngFor="let admin of allAdmins" value="{{admin.customIdName}}">{{admin.firstName}}
+                    </mat-option>
                 </mat-select>
                 <mat-hint>Add admin to organisation</mat-hint>
             </mat-form-field>
         </div>
-        <div>
+        <div *ngIf="allUsers.length > 0">
             <mat-form-field class="mr-16" appearance="outline">
                 <mat-label>Select user</mat-label>
-                <mat-select  [(value)]="selectedUsers" multiple>
-                    <mat-option *ngFor="let user of allUsers" value="{{user.customIdName}}">{{user.firstName}}</mat-option>
+                <mat-select [(value)]="selectedUsers" multiple>
+                    <mat-option *ngFor="let user of allUsers" value="{{user.customIdName}}">{{user.firstName}}
+                    </mat-option>
                 </mat-select>
                 <mat-hint>Add user to organisation</mat-hint>
             </mat-form-field>
@@ -34,6 +36,6 @@
     </div>
     <div mat-dialog-actions>
         <button [disabled]="loading" mat-button (click)="dialogRef.close()">Cancel</button>
-        <button [disabled]="loading" mat-button (click)="saveOrganisation()" cdkFocusInitial>Save</button>
+        <button [disabled]="loading || organisation.name == ''" mat-button (click)="saveOrganisation()" cdkFocusInitial>Save</button>
     </div>
 </div>

@@ -12,14 +12,14 @@ import { DialogAddOrganisationComponent } from '../dialog-add-organisation/dialo
 export class OrganisationComponent implements OnInit {
 
   organisation = new Organisation();
-  allOrganisations : [];
+  allOrganisations: [];
 
   constructor(public dialog: MatDialog, private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
     this.firestore
       .collection('organisations')
-      .valueChanges({idField: 'customIdName'})
+      .valueChanges({ idField: 'customIdName' })
       .subscribe((changes: any) => {
         console.log('Received all Organisations changes from DB', changes);
         this.allOrganisations = changes;

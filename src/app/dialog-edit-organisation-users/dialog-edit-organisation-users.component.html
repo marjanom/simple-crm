@@ -7,7 +7,7 @@
             <mat-form-field class="mr-16" appearance="outline">
                 <mat-label>Add Users</mat-label>
                 <mat-select  [(value)]="selectedUsersToAdd" multiple>
-                    <mat-option *ngFor="let user of usersOut;" [value]="user">{{user.firstName}}</mat-option>
+                    <mat-option *ngFor="let user of usersOut;" [value]="user.customIdName">{{user.firstName}}</mat-option>
                 </mat-select>
                 <mat-hint>Add Users to Organisation</mat-hint>
             </mat-form-field>
@@ -17,7 +17,7 @@
             <mat-form-field class="mr-16" appearance="outline">
                 <mat-label>Remove Users</mat-label>
                 <mat-select  [(value)]="selectedUsersToRemove" multiple>
-                    <mat-option *ngFor="let user of usersIn;" [value]="user">{{user.firstName}}</mat-option>
+                    <mat-option *ngFor="let user of usersIn;" [value]="user.customIdName">{{user.firstName}}</mat-option>
                 </mat-select>
                 <mat-hint>Remove Users from Organisation</mat-hint>
             </mat-form-field>

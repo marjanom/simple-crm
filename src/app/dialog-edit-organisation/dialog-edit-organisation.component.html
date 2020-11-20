@@ -1,1 +1,21 @@
-<p>dialog-edit-organisation works!</p>
+<div class="dialog-container">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+    <h1 mat-dialog-title>Edit</h1>
+    <div mat-dialog-content>
+        <div>
+            <mat-form-field class="mr-16" appearance="outline">
+                <mat-label>Name</mat-label>
+                <input [disabled]="loading" [(ngModel)]="organisation.name" matInput placeholder="Name">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <!-- TODO CHANGE ORGANISATION PHOTO -->
+
+    <div mat-dialog-actions>
+        <button [disabled]="loading" mat-button (click)="dialogRef.close()">Cancel</button>
+        <button [disabled]="loading || organisation.name == ''" mat-button (click)="saveChanges()"
+            cdkFocusInitial>Save</button>
+    </div>
+</div>

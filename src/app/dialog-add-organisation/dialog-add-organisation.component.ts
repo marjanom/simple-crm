@@ -11,9 +11,11 @@ import { Organisation } from 'src/models/organisation.class';
 })
 export class DialogAddOrganisationComponent implements OnInit {
 
+  //TODO: FORM VALIDATION
+
   organisation = new Organisation();
-  allUsers: any[];
-  allAdmins: any[];
+  allUsers = [];
+  allAdmins = [];
   loading = false;
   selectedAdmins: [];
   selectedUsers: [];
@@ -25,11 +27,10 @@ export class DialogAddOrganisationComponent implements OnInit {
       .collection('users')
       .valueChanges({ idField: 'customIdName' })
       .subscribe((changes: any) => {
-        console.log('Received changes from DB', changes);
-        //this.allUsers = changes;
+        //console.log('Received changes from DB', changes);
         this.allAdmins = this.getAdmins(changes);
         this.allUsers = this.getUsers(changes);
-        console.log(this.allUsers, this.allAdmins);
+        //console.log(""this.allUsers, this.allAdmins);
       });
   }
 
@@ -45,11 +46,10 @@ export class DialogAddOrganisationComponent implements OnInit {
     });
   }
 
-
   async saveOrganisation() {
     this.organisation.admins = this.selectedAdmins ? this.selectedAdmins : [];
     this.organisation.users = this.selectedUsers ? this.selectedUsers : [];
-    console.log('Current Organisation is', this.organisation);
+    //console.log('Current Organisation is', this.organisation);
     this.loading = true;
 
     if (this.selectedAdmins) {
@@ -64,14 +64,13 @@ export class DialogAddOrganisationComponent implements OnInit {
       });
     }
 
-    await this.firestore
+    let result = await this.firestore
       .collection('organisations')
-      .add(this.organisation.toJSON())
-      .then((result: any) => {
-        this.loading = false;
-        console.log('Adding organisation finsihed', result);
-        this.dialogRef.close();
-      });
+      .add(this.organisation.toJSON());
+
+    this.loading = false;
+    console.log('Adding organisation finsihed', result);
+    this.dialogRef.close();
   }
 
   async updateUserTodos(id: any) {
