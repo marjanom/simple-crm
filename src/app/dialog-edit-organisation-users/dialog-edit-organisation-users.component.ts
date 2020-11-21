@@ -48,16 +48,18 @@ export class DialogEditOrganisationUsersComponent implements OnInit {
 
   async saveChanges() {
     this.loading = true;
+
     if (this.selectedUsersToAdd) {
-      //TODO: add Organisation Todos
       console.log(this.selectedUsersToAdd);
       await this.addUsers(this.selectedUsersToAdd);
+      await this.updateUsersTodos(this.selectedUsersToAdd);
     }
 
     if (this.selectedUsersToRemove) {
       //TODO: remove Organisation Todos
       console.log(this.selectedUsersToRemove);
       await this.removeUsers(this.selectedUsersToRemove);
+      await this.removeUsersTodos(this.selectedUsersToRemove);
     }
 
     console.log("NEW ADMINS LIST: ", this.organisation.users);
@@ -79,4 +81,22 @@ export class DialogEditOrganisationUsersComponent implements OnInit {
       .update({ users: firebase.firestore.FieldValue.arrayRemove(...usersId) });
   }
 
+  async updateUsersTodos(userIds: any[]) {
+    userIds.forEach(async (userId) => {
+      await this.firestore
+        .collection('users')
+        .doc(userId)
+        .update({ todos: firebase.firestore.FieldValue.arrayUnion(...this.organisation.todos) });
+    });
+  }
+
+  //TODO: if user has todo done: true, will missmatch organisation todo and will not be removed
+  async removeUsersTodos(userIds: any[]) {
+    userIds.forEach(async (userId) => {
+      await this.firestore
+        .collection('users')
+        .doc(userId)
+        .update({ todos: firebase.firestore.FieldValue.arrayRemove(...this.organisation.todos) });
+    });
+  }
 }

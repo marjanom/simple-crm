@@ -47,6 +47,11 @@ export class DialogAddOrganisationComponent implements OnInit {
   }
 
   async saveOrganisation() {
+    const organisationId = this.firestore.createId();
+    this.organisation.todos.forEach( todo =>{
+      todo.customIdName = organisationId;
+    });
+
     this.organisation.admins = this.selectedAdmins ? this.selectedAdmins : [];
     this.organisation.users = this.selectedUsers ? this.selectedUsers : [];
     //console.log('Current Organisation is', this.organisation);
@@ -64,12 +69,13 @@ export class DialogAddOrganisationComponent implements OnInit {
       });
     }
 
-    let result = await this.firestore
-      .collection('organisations')
-      .add(this.organisation.toJSON());
+     await this.firestore
+    .collection('organisations')
+    .doc(organisationId)
+    .set(this.organisation.toJSON());
 
     this.loading = false;
-    console.log('Adding organisation finsihed', result);
+    console.log('Adding organisation finsihed', this.organisation);
     this.dialogRef.close();
   }
 
@@ -78,7 +84,7 @@ export class DialogAddOrganisationComponent implements OnInit {
       .collection('users')
       .doc(id)
       .update({
-        todo: firebase.firestore.FieldValue.arrayUnion(...this.organisation.todos)
+        todos: firebase.firestore.FieldValue.arrayUnion(...this.organisation.todos)
       });
   }
 }

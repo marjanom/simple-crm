@@ -55,7 +55,7 @@ export class AppComponent implements OnInit {
       this.isLandingPage = false;
     }
     
-    console.log(clientWidth);
+    //console.log(clientWidth);
     
     this.adaptDrawer();
     this.adaptRouterContainer(clientWidth);

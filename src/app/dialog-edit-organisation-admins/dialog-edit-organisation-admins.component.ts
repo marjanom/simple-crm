@@ -27,7 +27,7 @@ export class DialogEditOrganisationAdminsComponent implements OnInit {
     this.firestore
       .collection('users')
       .valueChanges({ idField: 'customIdName' })
-      .subscribe((changes: any) => {
+      .subscribe(async (changes: any) => {
         console.log('Received changes from DB', changes);
         this.adminsOut = this.getAdminsOut(changes);
         console.log("Admins In: ", this.adminsIn, "Admins Out: ", this.adminsOut);
@@ -48,19 +48,20 @@ export class DialogEditOrganisationAdminsComponent implements OnInit {
 
   async saveChanges() {
     this.loading = true;
+
     if (this.selectedAdminsToAdd) {
-      //TODO: add Organisation Todos
-      console.log(this.selectedAdminsToAdd);
+      console.log("Selected Admins Ids to Add: ",this.selectedAdminsToAdd);
       await this.addAdmins(this.selectedAdminsToAdd);
+      await this.updateUsersTodos(this.selectedAdminsToAdd);
     }
 
     if (this.selectedAdminsToRemove) {
-      //TODO: add Organisation Todos
-      console.log(this.selectedAdminsToRemove);
+      //TODO: remove Organisation Todos
+      console.log("Selected Admins Ids to Remove: ",this.selectedAdminsToRemove);
       await this.removeAdmins(this.selectedAdminsToRemove);
+      await this.removeUsersTodos(this.selectedAdminsToRemove);
     }
-
-    console.log("NEW ADMINS LIST: ", this.organisation.admins);
+    
     this.loading = false;
     this.dialogRef.close();
   }
@@ -72,11 +73,29 @@ export class DialogEditOrganisationAdminsComponent implements OnInit {
       .update({ admins: firebase.firestore.FieldValue.arrayUnion(...adminIds) });
   }
 
+  async updateUsersTodos(userIds: any[]) {
+    userIds.forEach(async (userId) => {
+      await this.firestore
+        .collection('users')
+        .doc(userId)
+        .update({ todos: firebase.firestore.FieldValue.arrayUnion(...this.organisation.todos) });
+    });
+  }
+
+  //TODO: if user has todo done: true, will missmatch organisation todo and will not be removed
+  async removeUsersTodos(userIds: any[]) {
+    userIds.forEach(async (userId) => {
+      await this.firestore
+        .collection('users')
+        .doc(userId)
+        .update({ todos: firebase.firestore.FieldValue.arrayRemove(...this.organisation.todos) });
+    });
+  }
+
   async removeAdmins(adminIds: any[]) {
     await this.firestore
       .collection('organisations')
       .doc(this.organisationId)
       .update({ admins: firebase.firestore.FieldValue.arrayRemove(...adminIds) });
   }
-
 }

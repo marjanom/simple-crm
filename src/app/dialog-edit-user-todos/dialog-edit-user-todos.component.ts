@@ -23,11 +23,10 @@ export class DialogEditUserTodosComponent implements OnInit {
   }
 
   async saveChanges() {
-
     this.loading = true;
-    
+
     if (this.todoName) {
-      let newTodo = { name: this.todoName, done: false };
+      let newTodo = { name: this.todoName, done: false, customIdName: this.userId };
       console.log("NEW TODO: ", newTodo);
       await this.updateUserTodos(newTodo);
     }
@@ -36,6 +35,7 @@ export class DialogEditUserTodosComponent implements OnInit {
       console.log(this.selectedTodos);
       await this.removeUserTodos(this.selectedTodos);
     }
+
     this.loading = false;
     this.dialogRef.close();
   }
@@ -44,18 +44,13 @@ export class DialogEditUserTodosComponent implements OnInit {
     await this.firestore
       .collection('users')
       .doc(this.userId)
-      .update({
-        todos: firebase.firestore.FieldValue.arrayUnion(todo)
-      });
+      .update({ todos: firebase.firestore.FieldValue.arrayUnion(todo) });
   }
 
   async removeUserTodos(todos: any[]) {
     await this.firestore
       .collection('users')
       .doc(this.userId)
-      .update({
-        todos: firebase.firestore.FieldValue.arrayRemove(...todos)
-      });
+      .update({ todos: firebase.firestore.FieldValue.arrayRemove(...todos) });
   }
-
 }

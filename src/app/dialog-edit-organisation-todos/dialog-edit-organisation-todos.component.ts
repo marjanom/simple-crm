@@ -20,14 +20,13 @@ export class DialogEditOrganisationTodosComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<DialogEditOrganisationTodosComponent>, private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
-
   }
 
   async saveChanges() {
     this.loading = true;
-    
+
     if (this.todoName) {
-      let newTodo = { name: this.todoName, done: false };
+      let newTodo = { name: this.todoName, done: false, customIdName: this.organisationId };
       console.log("NEW TODO: ", newTodo);
       await this.updateOrganisationTodos(newTodo);
       await this.updateAdminsTodos(newTodo);
@@ -50,47 +49,39 @@ export class DialogEditOrganisationTodosComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  //TODO: if user has todo done: true, will missmatch organisation todo and will not be removed
   async removeAdminsTodos(todos: any[]) {
     this.organisation.admins.forEach(async (adminId) => {
       await this.firestore
         .collection('users')
         .doc(adminId)
-        .update({
-          todos: firebase.firestore.FieldValue.arrayRemove(...todos)
-        });
+        .update({ todos: firebase.firestore.FieldValue.arrayRemove(...todos) });
     });
   }
 
+  //TODO: if user has todo done: true, will missmatch organisation todo and will not be removed
   async removeUsersTodos(todos: any[]) {
     this.organisation.users.forEach(async (userId) => {
-     await this.firestore
+      await this.firestore
         .collection('users')
         .doc(userId)
-        .update({
-          todos: firebase.firestore.FieldValue.arrayRemove(...todos)
-        });
+        .update({ todos: firebase.firestore.FieldValue.arrayRemove(...todos) });
     });
   }
 
-
-
   async removeOrganisationTodos(todos: any[]) {
-   await this.firestore
+    await this.firestore
       .collection('organisations')
       .doc(this.organisationId)
-      .update({
-        todos: firebase.firestore.FieldValue.arrayRemove(...todos)
-      });
+      .update({ todos: firebase.firestore.FieldValue.arrayRemove(...todos) });
   }
 
   async updateAdminsTodos(todo: any) {
     this.organisation.admins.forEach(async (adminId) => {
-     await this.firestore
+      await this.firestore
         .collection('users')
         .doc(adminId)
-        .update({
-          todos: firebase.firestore.FieldValue.arrayUnion(todo)
-        });
+        .update({ todos: firebase.firestore.FieldValue.arrayUnion(todo) });
     });
   }
 
@@ -99,19 +90,14 @@ export class DialogEditOrganisationTodosComponent implements OnInit {
       await this.firestore
         .collection('users')
         .doc(userId)
-        .update({
-          todos: firebase.firestore.FieldValue.arrayUnion(todo)
-        });
+        .update({ todos: firebase.firestore.FieldValue.arrayUnion(todo) });
     });
   }
 
-  async updateOrganisationTodos(todo: any){
+  async updateOrganisationTodos(todo: any) {
     await this.firestore
       .collection('organisations')
       .doc(this.organisationId)
-      .update({
-        todos: firebase.firestore.FieldValue.arrayUnion(todo)
-      });
+      .update({ todos: firebase.firestore.FieldValue.arrayUnion(todo) });
   }
-
 }
