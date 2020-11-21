@@ -20,7 +20,6 @@ header {
             left: 4rem;
             top: 1rem;
             max-height: 5rem;
-            // filter: invert(1);
         }
 
         a {
@@ -47,6 +46,7 @@ header {
     top: 0;
     max-width: 100%;
     background-color: #fff;
+    text-align: center;
 }
 
 .headline-container {
@@ -60,11 +60,15 @@ header {
         color: $custom-violet;
         font-size: 44px;
         line-height: 56px;
+        opacity: 0;
+        animation: 0.5s flyIn ease-out forwards;
     }
 
     h2 {
         margin-top: 2vh;    
         color: $custom-darkblue;
+        opacity: 0;
+        animation: 0.5s flyIn ease-out 0.25s forwards;
     }
     
     button {
@@ -72,6 +76,7 @@ header {
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: unset;
 
         &:hover {
             background-color: $custom-magenta;
@@ -79,24 +84,31 @@ header {
         
     }
     mat-icon {
-        transform: rotate(90deg);
         font-size: 3rem;
         height: unset;
         width: unset;
-        color: $custom-white;
+        color: $custom-violet;
+        cursor: pointer;
+        animation: up-down 1.5s infinite;
+        transition: 125ms all ease-in-out;
+
+        &:hover {
+            color: $custom-magenta;
+    
+        }
     }
 }
 
 .background-image {
     object-fit: contain;
-    margin: 4rem;
-    margin-bottom: 1rem;
+    margin-top: 4rem;
     background-color: $custom-cyan;
-    border-radius: 50% 50% 50% 50%;
-    border-bottom: 1rem solid $custom-grey;
-    max-height: 50vh;
-    width: calc(100% - 8rem);
-
+    border-radius: 50% 50% 0 0;
+    max-height: 55vh;
+    width: 100%;
+    padding-bottom: 3rem;
+    // opacity: 0;
+    // animation: 0.5s flyIn ease-out 0.5s forwards;
 }
 
 
@@ -110,7 +122,8 @@ header {
     justify-content: center;
     align-items: center;
     padding-top: 4rem;
-    background-color: #fafafa;
+    margin-top: -5px;
+    background-color: $custom-white;
 
     h3 {
         color: $custom-violet;
@@ -120,10 +133,11 @@ header {
     }
 
     .separator {
-        max-width: 10%;
-        width: 10rem;
+        max-width: 40%;
+        width: 15rem;
         border-bottom: 4px solid $custom-violet;
         border-radius: 50%;
+        opacity: 0.8;
     }
 
     span {
@@ -149,7 +163,8 @@ header {
     justify-content: center;
     width: 100%;
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
 
     div {
         width: 30vw;
@@ -184,6 +199,44 @@ header {
 .mobile-padding {
     padding-left: 2rem;
     padding-right: 2rem;
+}
+
+.section-1 {
+    background-color: $custom-cyan;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+
+    h3, span {
+        color: $custom-white;
+    }
+
+    .separator {
+        border-bottom-color: $custom-white;
+    }
+}
+
+
+
+@keyframes flyIn {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes up-down {
+    0% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-10px);
+        opacity: 1;
+    }
 }
 
 
@@ -240,10 +293,10 @@ header {
     }
 
     .background-image {
-        margin: 2rem;
-        width: calc(100% - 4rem);
-        top: 56px;
-        height: calc(100% - 56px);
+        // margin-top: 2rem;
+        // width: calc(100% - 4rem);
+        // top: 56px;
+        // height: calc(100% - 56px);
     }
 
     .about-section {
@@ -307,7 +360,7 @@ header {
     }
 
     .background-image {
-        margin: 1rem;
-        width: calc(100% - 2rem);
+        // margin: 1rem;
+        // width: calc(100% - 2rem);
     }
 }

@@ -1,4 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AngularFireModule } from '@angular/fire';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
+import { RouterModule } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 import { OrganisationDetailComponent } from './organisation-detail.component';
 
@@ -8,7 +13,14 @@ describe('OrganisationDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OrganisationDetailComponent ]
+      imports: [ RouterModule.forRoot([]),  AngularFireModule.initializeApp(environment.firebase), MatDialogModule, MatMenuModule],
+      declarations: [ OrganisationDetailComponent ],
+      providers: [
+        {
+          provide: MatDialogRef,
+          useValue: {}
+        }
+      ]
     })
     .compileComponents();
   });

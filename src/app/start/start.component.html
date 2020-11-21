@@ -16,18 +16,20 @@
         <h1>Easy customer management<br>
             for small businesses</h1>
         <h2>Learn more</h2>
-        <button mat-fab color="primary" (click)="scrollTo('about')">
-            <mat-icon>double_arrow</mat-icon>
-        </button>
+        <!-- <button mat-fab color="primary" > -->
+            <mat-icon (click)="scrollTo('about')">expand_more</mat-icon>
+        <!-- </button> -->
     </div>
 
     <img class="background-image" src="./assets/img/crm.jpg">
 
-    <div id="about" class="about-section mobile-padding">
+    <div class="about-section section-1">
         <h3>The smart way to handle user data!</h3>
         <div class="separator"></div>
         <span>Keep track of users, organisations and related tasks in a simple, yet efficient way!</span>
-
+    </div>
+    <div id="about" class="about-section mobile-padding">
+        <div class="separator"></div>
         <div class="about-details">
             <div>
                 <img src="./assets/img/user_data.png">
