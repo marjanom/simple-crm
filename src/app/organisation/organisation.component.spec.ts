@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AngularFireModule } from '@angular/fire';
+import { MatDialogModule } from '@angular/material/dialog';
+import { environment } from 'src/environments/environment';
 
 import { OrganisationComponent } from './organisation.component';
 
@@ -8,7 +11,9 @@ describe('OrganisationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OrganisationComponent ]
+      imports: [MatDialogModule, AngularFireModule.initializeApp(environment.firebase)],
+      declarations: [ OrganisationComponent ],
+      providers: []
     })
     .compileComponents();
   });

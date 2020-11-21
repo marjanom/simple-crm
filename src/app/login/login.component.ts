@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
 import { AuthProvider } from 'ngx-auth-firebaseui';
 import { User } from 'src/models/user.class';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -51,7 +50,7 @@ checkUserData(authEvent) {
   .ref.get()
   .then((doc) => {
     let fetchedUser = doc.data();
-    this.checkData(fetchedUser);
+    this.checkFetchedUser(fetchedUser);
    })
 }
 
@@ -59,7 +58,7 @@ checkUserData(authEvent) {
  * Check fetched data to decide about update or delete of user-entry
  * @param fetchedUser Data of fetched Firestore-document
  */
-checkData(fetchedUser: any) {
+checkFetchedUser(fetchedUser: any) {
   // Check if user is anonymous
   if (fetchedUser.email === null) {
     this.deleteAnonymUser();
@@ -113,12 +112,7 @@ updateUser() {
         .collection('users')
         .doc(this.userId)
         .update(this.user.toJSON())
-        .then(() => {
-          // console.log('User updated successfully');
-        });
-      } else {
-        // console.log('User update failed!');
-      }
+    }
       
 }
 

@@ -1,4 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { environment } from 'src/environments/environment';
 
 import { DialogAddOrganisationComponent } from './dialog-add-organisation.component';
 
@@ -8,7 +12,14 @@ describe('DialogAddOrganisationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DialogAddOrganisationComponent ]
+      imports: [AngularFireModule.initializeApp(environment.firebase), AngularFirestoreModule, MatDialogModule],
+      declarations: [ DialogAddOrganisationComponent ],
+      providers: [
+        {
+          provide: MatDialogRef,
+          useValue: {}
+        }
+      ]
     })
     .compileComponents();
   });
