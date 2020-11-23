@@ -58,6 +58,7 @@ export class DialogEditOrganisationAdminsComponent implements OnInit {
     if (this.selectedAdminsToRemove) {
       //TODO: remove Organisation Todos
       console.log("Selected Admins Ids to Remove: ",this.selectedAdminsToRemove);
+      //let idsToRemove = this.getIdsToRemove(this.selectedAdminsToRemove);
       await this.removeAdmins(this.selectedAdminsToRemove);
       await this.removeUsersTodos(this.selectedAdminsToRemove);
     }
@@ -88,9 +89,27 @@ export class DialogEditOrganisationAdminsComponent implements OnInit {
       await this.firestore
         .collection('users')
         .doc(userId)
+        // .set({
+        //     todos: 
+        // }, {merge: true});
         .update({ todos: firebase.firestore.FieldValue.arrayRemove(...this.organisation.todos) });
     });
   }
+
+  // async getTodosToRemove(userId: any){
+  //   let newTodos = [];
+  //   await this.firestore
+  //   .collection('users')
+  //   .doc(userId)
+  //   .ref.get()
+  //   .then(userDoc=>{
+  //     let user = userDoc.data();
+  //     newTodos = user.todos.filter( (todo: any) =>{
+  //       return todo.customIdName != this.organisationId;
+  //     });
+  //   })
+
+  //}
 
   async removeAdmins(adminIds: any[]) {
     await this.firestore

@@ -16,6 +16,8 @@ export class UserDetailComponent implements OnInit {
 
   userId = '';
   user: User = new User();
+  organisationTodos = [];
+  userTodos = [];
 
   constructor(private route: ActivatedRoute,
     private firestore: AngularFirestore,
@@ -26,7 +28,7 @@ export class UserDetailComponent implements OnInit {
       this.userId = paramMap.get('id');
       console.log('GOT ID', this.userId);
       this.getUser();
-    })
+    });
   }
 
 
@@ -42,7 +44,7 @@ export class UserDetailComponent implements OnInit {
         });
     }
   }
-
+  
   editMenu() {
     const dialog = this.dialog.open(DialogEditAddressComponent);
     dialog.componentInstance.user = new User(this.user.toJSON());
@@ -68,6 +70,6 @@ export class UserDetailComponent implements OnInit {
       .doc(this.userId)
       .set({
         todos: this.user.todos
-      },{merge: true});
+      }, { merge: true });
   }
 }
