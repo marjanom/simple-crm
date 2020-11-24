@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthProvider } from 'ngx-auth-firebaseui';
+import { AuthProcessService, AuthProvider } from 'ngx-auth-firebaseui';
 import { User } from 'src/models/user.class';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
+
 
 
 @Component({
@@ -17,12 +19,17 @@ export class LoginComponent implements OnInit {
   user: User;
   userId: string;
 
+
   constructor(
     private firestore: AngularFirestore,
-    private router: Router
+    private router: Router,
+    public afa: AngularFireAuth,
     ) { }
 
+    
+
   ngOnInit(): void {
+  
 
   }
 
@@ -34,6 +41,9 @@ export class LoginComponent implements OnInit {
       this.checkUserData(authEvent);
       // redirect to user-list, if login successful  
       this.router.navigate(['/user']);
+
+   
+
 }
 
 
@@ -68,6 +78,9 @@ checkFetchedUser(fetchedUser: any) {
 }
 
 
+/**
+ * Delete entry in users-collection, if user is anonymous (due to guest login)
+ */
 deleteAnonymUser() {
     this.firestore.collection('users')
     .doc(this.userId).delete();
@@ -120,5 +133,6 @@ updateUser() {
   printError(event) {
       console.error('Error detected', event);
   }
+
 
 }

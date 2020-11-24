@@ -49,6 +49,13 @@ header {
     text-align: center;
 }
 
+.landing-page-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .headline-container {
     display: flex;
     flex-direction: column;

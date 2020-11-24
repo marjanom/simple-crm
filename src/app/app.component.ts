@@ -2,7 +2,6 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
-import { AuthProcessService } from 'ngx-auth-firebaseui';
 
 
 @Component({
@@ -37,7 +36,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.checkForStartPage();
-
   }
 
 
