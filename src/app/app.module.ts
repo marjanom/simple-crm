@@ -44,6 +44,8 @@ import { FooterComponent } from './footer/footer.component';
 import { DialogEditUserTodosComponent } from './dialog-edit-user-todos/dialog-edit-user-todos.component';
 import { DialogEditOrganisationUsersComponent } from './dialog-edit-organisation-users/dialog-edit-organisation-users.component';
 import { DialogEditOrganisationAdminsComponent } from './dialog-edit-organisation-admins/dialog-edit-organisation-admins.component';
+import { ImprintComponent } from './imprint/imprint.component';
+import { DataProtectionComponent } from './data-protection/data-protection.component';
 
 
 
@@ -66,7 +68,9 @@ import { DialogEditOrganisationAdminsComponent } from './dialog-edit-organisatio
     FooterComponent,
     DialogEditUserTodosComponent,
     DialogEditOrganisationUsersComponent,
-    DialogEditOrganisationAdminsComponent
+    DialogEditOrganisationAdminsComponent,
+    ImprintComponent,
+    DataProtectionComponent
   ],
   imports: [
     BrowserModule,

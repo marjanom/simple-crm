@@ -8,6 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { OrganisationComponent } from './organisation/organisation.component';
 import { OrganisationDetailComponent } from './organisation-detail/organisation-detail.component';
 import { LoggedInGuard } from 'ngx-auth-firebaseui';
+import { ImprintComponent } from './imprint/imprint.component';
+import { DataProtectionComponent } from './data-protection/data-protection.component';
 
 
 const routes: Routes = [
@@ -18,7 +20,9 @@ const routes: Routes = [
   { path: 'organisation/:id', component: OrganisationDetailComponent, canActivate: [LoggedInGuard]},
   { path: 'user', component: UserComponent, canActivate: [LoggedInGuard] },
   { path: 'user/:id', component: UserDetailComponent, canActivate: [LoggedInGuard] },
-  { path: 'login', component: LoginComponent}
+  { path: 'login', component: LoginComponent},
+  { path: 'imprint', component: ImprintComponent},
+  { path: 'data-protection', component: DataProtectionComponent}
 ];
 
 @NgModule({
