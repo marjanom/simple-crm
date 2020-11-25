@@ -125,5 +125,7 @@ export class OrganisationDetailComponent implements OnInit {
     const dialog = this.dialog.open(DialogEditOrganisationTodosComponent);
     dialog.componentInstance.organisation = new Organisation(this.organisation.toJSON());
     dialog.componentInstance.organisationId = this.organisationId;
+    dialog.componentInstance.adminsIn = this.admins;
+    dialog.componentInstance.usersIn = this.users;
   }
 }

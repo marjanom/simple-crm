@@ -62,7 +62,7 @@ export class DialogEditOrganisationUsersComponent implements OnInit {
       await this.removeUsersTodos(this.selectedUsersToRemove);
     }
 
-    console.log("NEW ADMINS LIST: ", this.organisation.users);
+    console.log("NEW USERS LIST: ", this.organisation.users);
     this.loading = false;
     this.dialogRef.close();
   }
@@ -90,13 +90,21 @@ export class DialogEditOrganisationUsersComponent implements OnInit {
     });
   }
 
-  //TODO: if user has todo done: true, will missmatch organisation todo and will not be removed
   async removeUsersTodos(userIds: any[]) {
     userIds.forEach(async (userId) => {
+      let userToChangeTodos = this.usersIn.find(userIn => {
+        return userIn.customIdName == userId;
+      });
+      let newTodos = userToChangeTodos.todos.filter((todo: any) => {
+        return todo.customIdName != this.organisationId;
+      });
       await this.firestore
         .collection('users')
         .doc(userId)
-        .update({ todos: firebase.firestore.FieldValue.arrayRemove(...this.organisation.todos) });
+        .set({
+            todos: newTodos
+        }, {merge: true});
+        //.update({ todos: firebase.firestore.FieldValue.arrayRemove(...this.organisation.todos) });
     });
   }
 }
