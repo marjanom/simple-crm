@@ -16,6 +16,8 @@ export class DialogEditOrganisationTodosComponent implements OnInit {
   todoName: string;
   loading = false;
   selectedTodos: any[];
+  adminsIn = [];
+  usersIn = [];
 
   constructor(public dialogRef: MatDialogRef<DialogEditOrganisationTodosComponent>, private firestore: AngularFirestore) { }
 
@@ -43,30 +45,53 @@ export class DialogEditOrganisationTodosComponent implements OnInit {
       //   this.organisation.todos.splice(todoIndex, 1);
       // });
     }
-
-    console.log("NEW TODO LIST: ", this.organisation.todos);
     this.loading = false;
     this.dialogRef.close();
   }
 
-  //TODO: if user has todo done: true, will missmatch organisation todo and will not be removed
   async removeAdminsTodos(todos: any[]) {
-    this.organisation.admins.forEach(async (adminId) => {
-      await this.firestore
-        .collection('users')
-        .doc(adminId)
-        .update({ todos: firebase.firestore.FieldValue.arrayRemove(...todos) });
+    todos.forEach(todoRemove =>{
+        this.adminsIn.forEach( async adminIn =>{
+            adminIn.todos = adminIn.todos.filter(adminInTodo =>{
+                return (adminInTodo.name != todoRemove.name);
+            });
+           await this.firestore
+            .collection('users')
+            .doc(adminIn.customIdName)
+            .set({
+              todos: adminIn.todos
+            },{merge: true});
+        });
     });
+    // this.organisation.admins.forEach(async (adminId) => {
+    //   await this.firestore
+    //     .collection('users')
+    //     .doc(adminId)
+    //     .update({ todos: firebase.firestore.FieldValue.arrayRemove(...todos) });
+    // });
   }
 
   //TODO: if user has todo done: true, will missmatch organisation todo and will not be removed
   async removeUsersTodos(todos: any[]) {
-    this.organisation.users.forEach(async (userId) => {
-      await this.firestore
-        .collection('users')
-        .doc(userId)
-        .update({ todos: firebase.firestore.FieldValue.arrayRemove(...todos) });
-    });
+    todos.forEach(todoRemove =>{
+      this.usersIn.forEach( userIn =>{
+          userIn.todos = userIn.todos.filter(userInTodo =>{
+              return (userInTodo.name != todoRemove.name);
+          });
+          this.firestore
+          .collection('users')
+          .doc(userIn.customIdName)
+          .set({
+            todos: userIn.todos
+          },{merge: true});
+      });
+  });
+    // this.organisation.users.forEach(async (userId) => {
+    //   await this.firestore
+    //     .collection('users')
+    //     .doc(userId)
+    //     .update({ todos: firebase.firestore.FieldValue.arrayRemove(...todos) });
+    // });
   }
 
   async removeOrganisationTodos(todos: any[]) {

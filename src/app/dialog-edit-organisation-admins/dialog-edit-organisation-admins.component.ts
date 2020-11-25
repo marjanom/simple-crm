@@ -50,19 +50,19 @@ export class DialogEditOrganisationAdminsComponent implements OnInit {
     this.loading = true;
 
     if (this.selectedAdminsToAdd) {
-      console.log("Selected Admins Ids to Add: ",this.selectedAdminsToAdd);
+      console.log("Selected Admins Ids to Add: ", this.selectedAdminsToAdd);
       await this.addAdmins(this.selectedAdminsToAdd);
       await this.updateUsersTodos(this.selectedAdminsToAdd);
     }
 
     if (this.selectedAdminsToRemove) {
       //TODO: remove Organisation Todos
-      console.log("Selected Admins Ids to Remove: ",this.selectedAdminsToRemove);
+      console.log("Selected Admins Ids to Remove: ", this.selectedAdminsToRemove);
       //let idsToRemove = this.getIdsToRemove(this.selectedAdminsToRemove);
       await this.removeAdmins(this.selectedAdminsToRemove);
       await this.removeUsersTodos(this.selectedAdminsToRemove);
     }
-    
+
     this.loading = false;
     this.dialogRef.close();
   }
@@ -83,33 +83,23 @@ export class DialogEditOrganisationAdminsComponent implements OnInit {
     });
   }
 
-  //TODO: if user has todo done: true, will missmatch organisation todo and will not be removed
   async removeUsersTodos(userIds: any[]) {
     userIds.forEach(async (userId) => {
+      let adminToChangeTodos = this.adminsIn.find(adminIn => {
+        return adminIn.customIdName == userId;
+      });
+      let newTodos = adminToChangeTodos.todos.filter((todo: any) => {
+        return todo.customIdName != this.organisationId;
+      });
       await this.firestore
         .collection('users')
         .doc(userId)
-        // .set({
-        //     todos: 
-        // }, {merge: true});
-        .update({ todos: firebase.firestore.FieldValue.arrayRemove(...this.organisation.todos) });
+        .set({
+            todos: newTodos
+        }, {merge: true});
+        //.update({ todos: firebase.firestore.FieldValue.arrayRemove(...this.organisation.todos) });
     });
   }
-
-  // async getTodosToRemove(userId: any){
-  //   let newTodos = [];
-  //   await this.firestore
-  //   .collection('users')
-  //   .doc(userId)
-  //   .ref.get()
-  //   .then(userDoc=>{
-  //     let user = userDoc.data();
-  //     newTodos = user.todos.filter( (todo: any) =>{
-  //       return todo.customIdName != this.organisationId;
-  //     });
-  //   })
-
-  //}
 
   async removeAdmins(adminIds: any[]) {
     await this.firestore
