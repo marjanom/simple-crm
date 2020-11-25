@@ -71,7 +71,15 @@ mat-toolbar-row {
 
 ::ng-deep .mat-fab.mat-accent, ::ng-deep .mat-mini-fab.mat-accent, ::ng-deep .mat-raised-button.mat-warn {
     background-color: #e91e63;
-    background-image: none !important;
+
+}
+
+::ng-deep .mat-raised-button {
+    margin-top: 0.5rem !important;
+}
+
+::ng-deep .mat-card-title {
+    font-size: 20px;
 }
 
 ::ng-deep .mat-menu-panel {

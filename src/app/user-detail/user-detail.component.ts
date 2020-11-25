@@ -16,6 +16,9 @@ export class UserDetailComponent implements OnInit {
 
   userId = '';
   user: User = new User();
+  organisationTodos = [];
+  userTodos = [];
+  photoUrl: string;
 
   constructor(private route: ActivatedRoute,
     private firestore: AngularFirestore,
@@ -26,8 +29,13 @@ export class UserDetailComponent implements OnInit {
       this.userId = paramMap.get('id');
       console.log('GOT ID', this.userId);
       this.getUser();
-    })
+    });
   }
+
+  // TODO DELETE
+  // getPhotoUrl() {
+  //   return this.user.photoURL;
+  // }
 
 
   getUser() {
@@ -38,11 +46,12 @@ export class UserDetailComponent implements OnInit {
         .valueChanges()
         .subscribe((user: any) => {
           this.user = new User(user);
+          // this.photoUrl = this.user.photoURL;
           console.log('Retrieved user', this.user);
         });
     }
   }
-
+  
   editMenu() {
     const dialog = this.dialog.open(DialogEditAddressComponent);
     dialog.componentInstance.user = new User(this.user.toJSON());
@@ -68,6 +77,6 @@ export class UserDetailComponent implements OnInit {
       .doc(this.userId)
       .set({
         todos: this.user.todos
-      },{merge: true});
+      }, { merge: true });
   }
 }

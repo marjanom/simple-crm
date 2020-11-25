@@ -60,7 +60,6 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 
     h1 {
         margin-top: 1rem;
@@ -101,19 +100,16 @@ header {
 
         &:hover {
             color: $custom-magenta;
-    
         }
     }
 }
 
 .background-image {
     object-fit: contain;
-    margin-top: 4rem;
     background-color: $custom-cyan;
     border-radius: 50% 50% 0 0;
-    max-height: 55vh;
-    width: 100%;
-    padding-bottom: 3rem;
+    max-height: 50%;
+    padding-bottom: 1rem;
     // opacity: 0;
     // animation: 0.5s flyIn ease-out 0.5s forwards;
 }
@@ -128,8 +124,7 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 4rem;
-    margin-top: -5px;
+    padding-top: 3rem;
     background-color: $custom-white;
 
     h3 {
@@ -154,9 +149,9 @@ header {
     }
 
     button {
-        margin-bottom: 5vh;
-        font-size: 1.5rem;
-        padding: 1rem 1.5rem;
+        margin-bottom: 3rem;
+        font-size: 1.3rem;
+        padding: 1rem 1.3rem;
         text-transform: uppercase;
 
         &:hover {
@@ -211,7 +206,7 @@ header {
 .section-1 {
     background-color: $custom-cyan;
     padding-top: 2rem;
-    padding-bottom: 4rem;
+    padding-bottom: 3rem;
 
     h3, span {
         color: $custom-white;
@@ -221,8 +216,6 @@ header {
         border-bottom-color: $custom-white;
     }
 }
-
-
 
 @keyframes flyIn {
     from {
@@ -243,131 +236,5 @@ header {
     50% {
         transform: translateY(-10px);
         opacity: 1;
-    }
-}
-
-
-@media (max-width: 1200px) {
-    .headline-container {
-        h1 {
-            font-size: 36px;
-        }
-    }
-
-    .about-section {
-        button {
-            font-size: 1.3rem;
-        }
-    }
-
-    .about-details {
-        div {
-            padding: 3rem;
-            width: 40vw;
-        }
-    }
-
-}
-
-@media (max-width: 1000px) {
-    header nav img {
-        max-height: 4rem;
-        left: 3rem;
-    }
-
-    .about-details {
-        flex-direction: column;
-        align-items: center;
-
-        div {
-            width: 70vw;
-            padding: 2rem;
-        }
-    }
-}
-
-@media (max-width: 850px) {
-    
-    .headline-container {
-        h1 {
-            font-size: 32px;
-            line-height: 46px;
-        }
-
-        mat-icon {
-            font-size: 2.5rem;
-        }
-    }
-
-    .background-image {
-        // margin-top: 2rem;
-        // width: calc(100% - 4rem);
-        // top: 56px;
-        // height: calc(100% - 56px);
-    }
-
-    .about-section {
-        padding-top: 2rem;
-
-        h3 {
-            font-size: 1.3rem;
-        }
-
-        span {
-            width: 80%;
-            text-align: center;
-            font-size: 1.1rem;
-            margin-top: 1rem;
-        }
-
-        button {
-            font-size: 1.2rem;
-            padding: 0.5rem 1rem;
-        }
-    }
-
-    .btn-container {
-        margin: 3rem;
-    }
-
-}
-
-@media (max-width: 850px) {
-    .landing-page-overlay {
-        position: relative;
-        text-align: center;
-    }
-
-    header {
-        display: none;
-    }
-}
-
-@media (max-width: 650px) {
-    header nav {
-        padding: 28px 16px;
-
-        img {
-            max-height: 3rem;
-            left: 2rem;
-        }
-
-        a {
-            margin-left: 16px;
-            margin-right: 16px;
-        }
-
-    }
-
-    .headline-container {
-        h1 {
-            font-size: 28px;
-            line-height: 38px;
-        }
-    }
-
-    .background-image {
-        // margin: 1rem;
-        // width: calc(100% - 2rem);
     }
 }

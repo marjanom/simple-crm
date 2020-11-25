@@ -18,17 +18,18 @@ export class AppComponent implements OnInit {
   isMobileLP = false; // indicates if landing page is shown in mobile view
   isLoggedIn = false;
   drawerMode = "side";  // indicates current drawer-mode ('side' for wide screens, 'over' for mobile devices)
-
+  isAnonymous: boolean;
 
   constructor(
     private router: Router,
-    public afa: AngularFireAuth
+    public auth: AngularFireAuth
     ) {
     router.events.subscribe(() => {
       this.checkForStartPage();
 
-      this.afa.user.subscribe((user) => {
+      this.auth.user.subscribe((user) => {
         this.isLoggedIn = !!user;
+        // if (this.isLoggedIn) (this.isAnonymous = user.isAnonymous);
       });
     })
   }
@@ -37,6 +38,13 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.checkForStartPage();
   }
+
+
+  // async deleteGuestAccount() {
+  //   (await this.auth.currentUser).delete();
+  //   console.log('deleted');
+    
+  // }
 
 
   /**
@@ -87,6 +95,8 @@ export class AppComponent implements OnInit {
   }
 
   lockAccess() {
+    // if (this.isAnonymous) (this.deleteGuestAccount());
+    console.log('logged out');
     window.location.reload();
   }
 }

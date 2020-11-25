@@ -4,7 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 @Component({
   selector: 'app-start',
   templateUrl: './start.component.html',
-  styleUrls: ['./start.component.scss']
+  styleUrls: ['./start.component.scss', './start.component.responsive.scss']
 })
 export class StartComponent implements OnInit {
   isLoggedIn = true;
