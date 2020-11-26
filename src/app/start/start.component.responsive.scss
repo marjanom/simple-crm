@@ -47,9 +47,25 @@
 
 @media (max-width: 1000px) and (max-height: 850px) {
     .about-section {
+        padding-top: 2rem;
         h3 {
-            font: 1.2rem;
+            font-size: 1.2rem;
         }
+
+        span {
+            margin-top: 1rem;
+        }
+        
+        button {
+            font-size: 1.2rem;
+            padding: 0.5rem 1rem;
+            margin-bottom: 0;
+        }
+    }
+
+    .section-1 {
+        padding-top: 1rem;
+        padding-bottom: 2rem;
     }
     
     .about-details {
@@ -57,6 +73,7 @@
         margin-bottom: 1rem;
 
         div {
+            padding: 1rem;
             img {
                 max-height: 10rem;
             }
