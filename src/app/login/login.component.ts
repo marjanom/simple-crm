@@ -156,13 +156,10 @@ deleteAnonymUser() {
         .doc(this.userId)
         .update(this.user.toJSON())
     }
-
   }
 
 
   printError(event) {
     console.error('Error detected', event);
   }
-
-
 }

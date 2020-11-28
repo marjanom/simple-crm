@@ -76,7 +76,7 @@ export class AppComponent implements OnInit {
       this.isMobile = false;
       this.drawerMode = "side";
     } else {
-      this.openDrawer = true;
+      this.openDrawer = false;
       this.isMobile = true;
       this.drawerMode = "over";
     }

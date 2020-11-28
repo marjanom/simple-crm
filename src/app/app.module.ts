@@ -46,6 +46,7 @@ import { DialogEditOrganisationUsersComponent } from './dialog-edit-organisation
 import { DialogEditOrganisationAdminsComponent } from './dialog-edit-organisation-admins/dialog-edit-organisation-admins.component';
 import { ImprintComponent } from './imprint/imprint.component';
 import { DataProtectionComponent } from './data-protection/data-protection.component';
+import { TrusticonsComponent } from './trusticons/trusticons.component';
 
 
 
@@ -70,7 +71,8 @@ import { DataProtectionComponent } from './data-protection/data-protection.compo
     DialogEditOrganisationUsersComponent,
     DialogEditOrganisationAdminsComponent,
     ImprintComponent,
-    DataProtectionComponent
+    DataProtectionComponent,
+    TrusticonsComponent
   ],
   imports: [
     BrowserModule,
