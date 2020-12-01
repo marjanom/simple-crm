@@ -27,15 +27,9 @@ export class UserDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(paramMap => {
       this.userId = paramMap.get('id');
-      console.log('GOT ID', this.userId);
       this.getUser();
     });
   }
-
-  // TODO DELETE
-  // getPhotoUrl() {
-  //   return this.user.photoURL;
-  // }
 
 
   getUser() {
@@ -47,7 +41,7 @@ export class UserDetailComponent implements OnInit {
         .subscribe((user: any) => {
           this.user = new User(user);
           // this.photoUrl = this.user.photoURL;
-          console.log('Retrieved user', this.user);
+          // console.log('Retrieved user', this.user);
         });
     }
   }

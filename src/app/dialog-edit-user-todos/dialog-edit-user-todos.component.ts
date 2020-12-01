@@ -27,12 +27,12 @@ export class DialogEditUserTodosComponent implements OnInit {
 
     if (this.todoName) {
       let newTodo = { name: this.todoName, done: false, customIdName: this.userId };
-      console.log("NEW TODO: ", newTodo);
+      // console.log("NEW TODO: ", newTodo);
       await this.updateUserTodos(newTodo);
     }
 
     if (this.selectedTodos) {
-      console.log(this.selectedTodos);
+      // console.log(this.selectedTodos);
       await this.removeUserTodos(this.selectedTodos);
     }
 

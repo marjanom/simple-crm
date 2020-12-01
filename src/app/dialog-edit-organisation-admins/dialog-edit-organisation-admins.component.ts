@@ -28,9 +28,9 @@ export class DialogEditOrganisationAdminsComponent implements OnInit {
       .collection('users')
       .valueChanges({ idField: 'customIdName' })
       .subscribe(async (changes: any) => {
-        console.log('Received changes from DB', changes);
+        // console.log('Received changes from DB', changes);
         this.adminsOut = this.getAdminsOut(changes);
-        console.log("Admins In: ", this.adminsIn, "Admins Out: ", this.adminsOut);
+        // console.log("Admins In: ", this.adminsIn, "Admins Out: ", this.adminsOut);
       });
   }
 
@@ -50,14 +50,14 @@ export class DialogEditOrganisationAdminsComponent implements OnInit {
     this.loading = true;
 
     if (this.selectedAdminsToAdd) {
-      console.log("Selected Admins Ids to Add: ", this.selectedAdminsToAdd);
+      // console.log("Selected Admins Ids to Add: ", this.selectedAdminsToAdd);
       await this.addAdmins(this.selectedAdminsToAdd);
       await this.updateUsersTodos(this.selectedAdminsToAdd);
     }
 
     if (this.selectedAdminsToRemove) {
       //TODO: remove Organisation Todos
-      console.log("Selected Admins Ids to Remove: ", this.selectedAdminsToRemove);
+      // console.log("Selected Admins Ids to Remove: ", this.selectedAdminsToRemove);
       //let idsToRemove = this.getIdsToRemove(this.selectedAdminsToRemove);
       await this.removeAdmins(this.selectedAdminsToRemove);
       await this.removeUsersTodos(this.selectedAdminsToRemove);

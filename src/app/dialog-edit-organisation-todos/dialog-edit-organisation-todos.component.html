@@ -1,22 +1,22 @@
 <div class="dialog-container">
     <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
     
-    <h1 mat-dialog-title>Edit Todo</h1>
+    <h1 mat-dialog-title>Edit to-do</h1>
     <div mat-dialog-content>
         <div>
             <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Add Todo</mat-label>
+                <mat-label>Add to-do</mat-label>
                 <input [disabled]="loading" [(ngModel)]="todoName" matInput placeholder="Name">
                 <mat-hint>Please enter a name</mat-hint>
             </mat-form-field>
         </div>
         <div *ngIf="organisation.todos.length > 0">
             <mat-form-field class="mr-16" appearance="outline">
-                <mat-label>Remove Todo</mat-label>
+                <mat-label>Remove to-do</mat-label>
                 <mat-select  [(value)]="selectedTodos" multiple>
                     <mat-option *ngFor="let todo of organisation.todos;let todoIndex = index;" [value]="todo">{{todo.name}}</mat-option>
                 </mat-select>
-                <mat-hint>Remove Todos from Organisation</mat-hint>
+                <mat-hint>Remove to-dos from organisation</mat-hint>
             </mat-form-field>
         </div>
     </div>

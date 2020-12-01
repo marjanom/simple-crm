@@ -28,9 +28,9 @@ export class DialogEditOrganisationUsersComponent implements OnInit {
       .collection('users')
       .valueChanges({idField: 'customIdName'})
       .subscribe((changes: any) => {
-        console.log('Received changes from DB', changes);
+        // console.log('Received changes from DB', changes);
         this.usersOut = this.getUsersOut(changes);
-        console.log("Users In: ", this.usersIn, "Users Out: ", this.usersOut);
+        // console.log("Users In: ", this.usersIn, "Users Out: ", this.usersOut);
       });
   }
 
@@ -50,19 +50,19 @@ export class DialogEditOrganisationUsersComponent implements OnInit {
     this.loading = true;
 
     if (this.selectedUsersToAdd) {
-      console.log(this.selectedUsersToAdd);
+      // console.log(this.selectedUsersToAdd);
       await this.addUsers(this.selectedUsersToAdd);
       await this.updateUsersTodos(this.selectedUsersToAdd);
     }
 
     if (this.selectedUsersToRemove) {
       //TODO: remove Organisation Todos
-      console.log(this.selectedUsersToRemove);
+      // console.log(this.selectedUsersToRemove);
       await this.removeUsers(this.selectedUsersToRemove);
       await this.removeUsersTodos(this.selectedUsersToRemove);
     }
 
-    console.log("NEW USERS LIST: ", this.organisation.users);
+    // console.log("NEW USERS LIST: ", this.organisation.users);
     this.loading = false;
     this.dialogRef.close();
   }

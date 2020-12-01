@@ -75,7 +75,7 @@ export class DialogAddOrganisationComponent implements OnInit {
     .set(this.organisation.toJSON());
 
     this.loading = false;
-    console.log('Adding organisation finsihed', this.organisation);
+    // console.log('Adding organisation finsihed', this.organisation);
     this.dialogRef.close();
   }
 

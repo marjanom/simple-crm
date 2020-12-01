@@ -28,7 +28,7 @@ export class OrganisationDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe( (paramMap) => {
       this.organisationId = paramMap.get('id');
-      console.log('GOT ID', this.organisationId);
+      // console.log('GOT ID', this.organisationId);
        this.getOrganisation();
     });
   }
@@ -41,7 +41,7 @@ export class OrganisationDetailComponent implements OnInit {
         this.admins = changes.filter((change) => {
           return this.organisation.admins.includes(change.customIdName);
         });
-        console.log("Retrieved Admins: ", this.admins);
+        // console.log("Retrieved Admins: ", this.admins);
       })
   }
 
@@ -53,7 +53,7 @@ export class OrganisationDetailComponent implements OnInit {
         this.users = changes.filter((change) => {
           return this.organisation.users.includes(change.customIdName);
         });
-        console.log("Retrieved Users: ", this.users);
+        // console.log("Retrieved Users: ", this.users);
       })
   }
 

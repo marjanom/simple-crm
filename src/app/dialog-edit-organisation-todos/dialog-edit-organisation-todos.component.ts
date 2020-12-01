@@ -29,14 +29,14 @@ export class DialogEditOrganisationTodosComponent implements OnInit {
 
     if (this.todoName) {
       let newTodo = { name: this.todoName, done: false, customIdName: this.organisationId };
-      console.log("NEW TODO: ", newTodo);
+      // console.log("NEW TODO: ", newTodo);
       await this.updateOrganisationTodos(newTodo);
       await this.updateAdminsTodos(newTodo);
       await this.updateUsersTodos(newTodo);
     }
 
     if (this.selectedTodos) {
-      console.log(this.selectedTodos);
+      // console.log(this.selectedTodos);
       await this.removeAdminsTodos(this.selectedTodos);
       await this.removeUsersTodos(this.selectedTodos);
       await this.removeOrganisationTodos(this.selectedTodos);

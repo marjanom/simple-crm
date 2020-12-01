@@ -50,7 +50,7 @@
   <mat-card-content *ngFor="let todo of user.todos;let i = index">
     <mat-checkbox [(ngModel)]="todo.done" (change)="changeTodoState($event.checked)">
     </mat-checkbox>
-    {{ todo.name }}, ({{ todo.customIdName }})
+    {{ todo.name }}  <!--,  ({{ todo.customIdName }}) -->
   </mat-card-content>
 
   <mat-card-content *ngIf="user.todos.length == 0">

@@ -29,7 +29,6 @@ export class AppComponent implements OnInit {
 
       this.auth.user.subscribe((user) => {
         this.isLoggedIn = !!user;
-        // if (this.isLoggedIn) (this.isAnonymous = user.isAnonymous);
       });
     })
   }
@@ -38,13 +37,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.checkForStartPage();
   }
-
-
-  // async deleteGuestAccount() {
-  //   (await this.auth.currentUser).delete();
-  //   console.log('deleted');
-    
-  // }
 
 
   /**
@@ -95,8 +87,6 @@ export class AppComponent implements OnInit {
   }
 
   lockAccess() {
-    // if (this.isAnonymous) (this.deleteGuestAccount());
-    console.log('logged out');
     window.location.reload();
   }
 }
