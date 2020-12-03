@@ -41,18 +41,21 @@ export class LoginComponent implements OnInit {
    * @param authEvent - JSON-object containing data of Firebase auth-event
    */
   async loginSuccessful(authEvent: any) {
-    if (authEvent.isAnonymous) {
+    if (authEvent.isAnonymous) (this.setGuestUser());
+    await this.processUserData(authEvent);
+
+    this.router.navigate(['/user']);
+  }
+
+  /**
+   * Apply Guest User properties to current user
+   */
+   async setGuestUser() {
       (await this.auth.currentUser).updateProfile({
         displayName: "Guest User",
         photoURL: "./assets/img/profile_female2.png"
       });
-      // (await this.auth.currentUser).updateEmail('user@example.com');
-    }
-
-    await this.checkUserData(authEvent);
-    // redirect to user-list, if login successful  
-    this.router.navigate(['/user']);
-  }
+   }
 
 
   /**
@@ -60,7 +63,7 @@ export class LoginComponent implements OnInit {
    * Extend user-entry with custom property fields, if it only contains FirebaseAuth-data
    * @param authEvent - JSON-object containing data of Firebase auth-event
    */
-  checkUserData(authEvent) {
+  processUserData(authEvent: any) {
     this.userId = authEvent.uid;
     this.firestore
       .collection('users')
@@ -68,21 +71,17 @@ export class LoginComponent implements OnInit {
       .ref.get()
       .then((doc) => {
         let fetchedUser = doc.data();
-        this.checkFetchedUser(fetchedUser);
+        this.processUserEntry(fetchedUser, authEvent);
       })
   }
 
   /**
-   * Check fetched data to decide about update or delete of user-entry
+   * Check fetched user data to decide about update or delete of user-entry
    * @param fetchedUser Data of fetched Firestore-document
    */
-  checkFetchedUser(fetchedUser: any) {
-    // Check if user is anonymous
-    if (fetchedUser.email === null) {
-      this.deleteAnonymUser();
-    } else {
-      this.checkUserProperties(fetchedUser);
-    }
+  processUserEntry(fetchedUser: any, authEvent: any) {
+    if (authEvent.isAnonymous) (this.deleteAnonymUser());
+    else (this.checkCustomProperties(fetchedUser));
   }
 
 
@@ -94,14 +93,15 @@ deleteAnonymUser() {
       .doc(this.userId).delete();
   }
 
+
   /**
    * Check if fetched user data already contain custom properties; if not, add properties and update user-entry
    * @param fetchedUser Data of fetched Firestore-document
    */
-  checkUserProperties(fetchedUser: any) {
+  checkCustomProperties(fetchedUser: any) {
     if (fetchedUser.lastName == undefined) {
-      this.updateFSUserEntry(fetchedUser);
-      this.updateUser();
+      this.compileNewUserEntry(fetchedUser);
+      this.uploadUserEntry();
     }
   }
 
@@ -109,22 +109,21 @@ deleteAnonymUser() {
    * Update user-entry in Firestore creating a new User-object w/ custom properties and assign fetched data from Firebase Auth
    * @param fetchedUser : JSON-object containing auth-data gathered by Firebase
    */
-  updateFSUserEntry(fetchedUser) {
+  compileNewUserEntry(fetchedUser: any) {
     this.user = new User();
-    this.updateName(fetchedUser);
+    this.setName(fetchedUser);
     this.user.email = fetchedUser.email;
     this.user.uid = fetchedUser.uid;
     this.user.providerId = fetchedUser.providerId;
-    this.updatePhotoUrl(fetchedUser);
+    this.setPhotoUrl(fetchedUser);
     this.user.registeredUser = true;
-
   }
 
   /**
    * Updates displayName and sets firstName to displayName in Firestore collection
    * @param fetchedUser : JSON-object containing auth-data gathered by Firebase
    */
-  updateName(fetchedUser: any) {
+  setName(fetchedUser: any) {
     this.user.displayName = fetchedUser.displayName;
     if (this.user.displayName !== '') (this.user.firstName = this.user.displayName);
   }
@@ -133,23 +132,27 @@ deleteAnonymUser() {
  * Updates photoUrl in Firebase auth & Firestore collection; sets defaultPhotoUrl if none 
  * @param fetchedUser : JSON-object containing auth-data gathered by Firebase
  */
-  async updatePhotoUrl(fetchedUser: any) {
+  setPhotoUrl(fetchedUser: any) {
     let photoUrlExists = fetchedUser.photoURL !== ('' || null);
-    if (!photoUrlExists) {
-      this.user.photoURL = this.defaultPhotoUrl;
-      (await this.auth.currentUser).updateProfile({
-        photoURL: this.defaultPhotoUrl
-      });
-    } else {
-      this.user.photoURL = fetchedUser.photoURL;
-    }
+    if (!photoUrlExists) (this.setDefaultPhoto()) 
+    else (this.user.photoURL = fetchedUser.photoURL);
+  }
+
+  /**
+   * Set default photoURL
+   */
+  async setDefaultPhoto() {
+    this.user.photoURL = this.defaultPhotoUrl;
+    (await this.auth.currentUser).updateProfile({
+      photoURL: this.defaultPhotoUrl
+    });
   }
 
 
   /**
    * Upload new User-object to Firestore to make custom user-properties accessible 
    */
-  updateUser() {
+  uploadUserEntry() {
     if (this.userId) {
       this.firestore
         .collection('users')
