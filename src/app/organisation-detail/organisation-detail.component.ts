@@ -27,7 +27,7 @@ export class OrganisationDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe( (paramMap) => {
-      this.organisationId = paramMap.get('id');
+      this.organisationId = paramMap.get('name');
       // console.log('GOT ID', this.organisationId);
        this.getOrganisation();
     });

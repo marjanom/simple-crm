@@ -15,9 +15,11 @@ export class UserComponent implements OnInit {
   allUsers = [];
 
 
-  constructor(public dialog: MatDialog, private firestore: AngularFirestore) { }
+  constructor(public dialog: MatDialog,
+     private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
+
     this.firestore
       .collection('users')
       .valueChanges({idField: 'customIdName'})

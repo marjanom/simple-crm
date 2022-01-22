@@ -17,12 +17,12 @@ const routes: Routes = [
   // { path: 'dashboard', component: DashboardComponent, canActivate: [LoggedInGuard] },
   { path: 'start', component: StartComponent },
   { path: 'organisation', component: OrganisationComponent, canActivate: [LoggedInGuard]},
-  { path: 'organisation/:id', component: OrganisationDetailComponent, canActivate: [LoggedInGuard]},
+  { path: 'organisation/:name', component: OrganisationDetailComponent, canActivate: [LoggedInGuard]},
   { path: 'user', component: UserComponent, canActivate: [LoggedInGuard] },
   { path: 'user/:id', component: UserDetailComponent, canActivate: [LoggedInGuard] },
   { path: 'login', component: LoginComponent},
   { path: 'imprint', component: ImprintComponent},
-  { path: 'data-protection', component: DataProtectionComponent}
+  { path: 'data-protection', component: DataProtectionComponent},
 ];
 
 @NgModule({

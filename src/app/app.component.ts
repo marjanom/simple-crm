@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   @ViewChild('drawer') drawer: MatDrawer;
 
+  title = "simple-crm";
+
   openDrawer = true;
   isLandingPage = false;
   isMobile = false; // indicates if mobile screen detected

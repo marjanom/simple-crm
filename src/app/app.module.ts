@@ -47,6 +47,7 @@ import { DialogEditOrganisationAdminsComponent } from './dialog-edit-organisatio
 import { ImprintComponent } from './imprint/imprint.component';
 import { DataProtectionComponent } from './data-protection/data-protection.component';
 import { TrusticonsComponent } from './trusticons/trusticons.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 
@@ -99,7 +100,8 @@ import { TrusticonsComponent } from './trusticons/trusticons.component';
     ReactiveFormsModule,
     FontAwesomeModule,
     NgxAuthFirebaseUIModule.forRoot(environment.firebase, () => 'Simple-CRM', environment.ngxAuthfirebaseUIConfig),
-    MatPasswordStrengthModule.forRoot()
+    MatPasswordStrengthModule.forRoot(),
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

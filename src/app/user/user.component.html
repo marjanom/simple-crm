@@ -5,6 +5,10 @@
             <th>E-Mail</th>
             <th>City</th>
         </tr>
+        <tr *ngIf="allUsers.length == 0">
+            <label for="name">Name</label>
+            <input name="name" type="text">
+        </tr>
         <tr *ngFor="let user of allUsers" [routerLink]="['/user/' + user.customIdName]">
             <td>{{ user.firstName }} {{ user.lastName }}</td>
             <td>{{ user.email }}</td>
