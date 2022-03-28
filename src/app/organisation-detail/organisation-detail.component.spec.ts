@@ -13,7 +13,7 @@ describe('OrganisationDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ RouterModule.forRoot([]),  AngularFireModule.initializeApp(environment.firebase), MatDialogModule, MatMenuModule],
+      imports: [ RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }),  AngularFireModule.initializeApp(environment.firebase), MatDialogModule, MatMenuModule],
       declarations: [ OrganisationDetailComponent ],
       providers: [
         {

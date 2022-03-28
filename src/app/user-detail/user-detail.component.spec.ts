@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { UserDetailComponent } from './user-detail.component';
 import { RouterModule } from '@angular/router';
@@ -12,9 +12,9 @@ describe('UserDetailComponent', () => {
   let component: UserDetailComponent;
   let fixture: ComponentFixture<UserDetailComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [AngularFireModule.initializeApp(environment.firebase), AngularFirestoreModule, MatMenuModule, MatDialogModule, RouterModule.forRoot([])],
+      imports: [AngularFireModule.initializeApp(environment.firebase), AngularFirestoreModule, MatMenuModule, MatDialogModule, RouterModule.forRoot([], { relativeLinkResolution: 'legacy' })],
       declarations: [ UserDetailComponent ],
       providers: [
         {

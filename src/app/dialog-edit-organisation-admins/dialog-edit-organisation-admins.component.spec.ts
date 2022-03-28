@@ -13,7 +13,7 @@ describe('DialogEditOrganisationAdminsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ DialogEditOrganisationAdminsComponent ],
-      imports: [RouterModule.forRoot([]),  AngularFireModule.initializeApp(environment.firebase),MatDialogModule],
+      imports: [RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }),  AngularFireModule.initializeApp(environment.firebase),MatDialogModule],
       providers : [
         {
           provide: MatDialogRef,
