@@ -20,9 +20,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AngularFireModule } from '@angular/fire';
+import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { UserDetailComponent } from './user-detail/user-detail.component';
@@ -32,7 +32,7 @@ import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.com
 import { StartComponent } from './start/start.component';
 import { LoginComponent } from './login/login.component';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
+//import { faFacebookSquare } from '@fortawesome/free-brand-svg-icons';
 import { OrganisationComponent } from './organisation/organisation.component';
 import { DialogAddOrganisationComponent } from './dialog-add-organisation/dialog-add-organisation.component';
 import { OrganisationDetailComponent } from './organisation-detail/organisation-detail.component';
@@ -47,7 +47,8 @@ import { DialogEditOrganisationAdminsComponent } from './dialog-edit-organisatio
 import { ImprintComponent } from './imprint/imprint.component';
 import { DataProtectionComponent } from './data-protection/data-protection.component';
 import { TrusticonsComponent } from './trusticons/trusticons.component';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 
@@ -101,7 +102,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     FontAwesomeModule,
     NgxAuthFirebaseUIModule.forRoot(environment.firebase, () => 'Simple-CRM', environment.ngxAuthfirebaseUIConfig),
     MatPasswordStrengthModule.forRoot(),
-    DragDropModule
+    DragDropModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Organisation } from 'src/models/organisation.class';
 //var isEqual = require('lodash.isequal');
 import * as _ from 'lodash';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/compat';
 
 @Component({
   selector: 'app-dialog-edit-organisation-admins',
@@ -71,7 +71,7 @@ export class DialogEditOrganisationAdminsComponent implements OnInit {
     await this.firestore
       .collection('organisations')
       .doc(this.organisationId)
-      .update({ admins: firebase.firestore.FieldValue.arrayUnion(...adminIds) });
+      .update({ /*admins: firebase.firestore.FieldValue.arrayUnion(...adminIds) */});
   }
 
   async updateUsersTodos(userIds: any[]) {
@@ -79,7 +79,7 @@ export class DialogEditOrganisationAdminsComponent implements OnInit {
       await this.firestore
         .collection('users')
         .doc(userId)
-        .update({ todos: firebase.firestore.FieldValue.arrayUnion(...this.organisation.todos) });
+        .update({ /*todos: firebase.firestore.FieldValue.arrayUnion(...this.organisation.todos) */});
     });
   }
 
@@ -105,6 +105,6 @@ export class DialogEditOrganisationAdminsComponent implements OnInit {
     await this.firestore
       .collection('organisations')
       .doc(this.organisationId)
-      .update({ admins: firebase.firestore.FieldValue.arrayRemove(...adminIds) });
+      .update({ /*admins: firebase.firestore.FieldValue.arrayRemove(...adminIds) */});
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/compat';
 import { User } from 'src/models/user.class';
 
 @Component({
@@ -44,13 +44,13 @@ export class DialogEditUserTodosComponent implements OnInit {
     await this.firestore
       .collection('users')
       .doc(this.userId)
-      .update({ todos: firebase.firestore.FieldValue.arrayUnion(todo) });
+      .update({ /*todos: firebase.firestore.FieldValue.arrayUnion(todo) */});
   }
 
   async removeUserTodos(todos: any[]) {
     await this.firestore
       .collection('users')
       .doc(this.userId)
-      .update({ todos: firebase.firestore.FieldValue.arrayRemove(...todos) });
+      .update({ /*todos: firebase.firestore.FieldValue.arrayRemove(...todos) */});
   }
 }

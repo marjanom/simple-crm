@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 import { User } from 'src/models/user.class';
-import { firestore } from 'firebase';
-import { AngularFirestore, QueryFn } from '@angular/fire/firestore';
+// import { firestore } from 'firebase';
+import { AngularFirestore, QueryFn } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-user',

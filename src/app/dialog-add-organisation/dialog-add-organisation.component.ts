@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/compat';
 import { Organisation } from 'src/models/organisation.class';
 
 @Component({
@@ -84,7 +84,7 @@ export class DialogAddOrganisationComponent implements OnInit {
       .collection('users')
       .doc(id)
       .update({
-        todos: firebase.firestore.FieldValue.arrayUnion(...this.organisation.todos)
+        //todos: firebase.firestore.FieldValue.arrayUnion(...this.organisation.todos)
       });
   }
 }

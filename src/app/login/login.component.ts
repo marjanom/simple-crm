@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthProcessService, AuthProvider } from 'ngx-auth-firebaseui';
 import { User } from 'src/models/user.class';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 //import { auth } from 'firebase';
-import * as firebase from 'firebase';
+// import * as firebase from 'firebase';
 import { environment } from 'src/environments/environment';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 
 @Component({

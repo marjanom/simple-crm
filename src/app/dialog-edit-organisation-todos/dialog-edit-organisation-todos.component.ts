@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Organisation } from 'src/models/organisation.class';
 import * as firebase from 'firebase/app';
@@ -98,7 +98,7 @@ export class DialogEditOrganisationTodosComponent implements OnInit {
     await this.firestore
       .collection('organisations')
       .doc(this.organisationId)
-      .update({ todos: firebase.firestore.FieldValue.arrayRemove(...todos) });
+      .update({ /*todos: firebase.firestore.FieldValue.arrayRemove(...todos) */});
   }
 
   async updateAdminsTodos(todo: any) {
@@ -106,7 +106,7 @@ export class DialogEditOrganisationTodosComponent implements OnInit {
       await this.firestore
         .collection('users')
         .doc(adminId)
-        .update({ todos: firebase.firestore.FieldValue.arrayUnion(todo) });
+        .update({ /*todos: firebase.firestore.FieldValue.arrayUnion(todo) */});
     });
   }
 
@@ -115,7 +115,7 @@ export class DialogEditOrganisationTodosComponent implements OnInit {
       await this.firestore
         .collection('users')
         .doc(userId)
-        .update({ todos: firebase.firestore.FieldValue.arrayUnion(todo) });
+        .update({ /*todos: firebase.firestore.FieldValue.arrayUnion(todo) */});
     });
   }
 
@@ -123,6 +123,6 @@ export class DialogEditOrganisationTodosComponent implements OnInit {
     await this.firestore
       .collection('organisations')
       .doc(this.organisationId)
-      .update({ todos: firebase.firestore.FieldValue.arrayUnion(todo) });
+      .update({ /*todos: firebase.firestore.FieldValue.arrayUnion(todo) */});
   }
 }

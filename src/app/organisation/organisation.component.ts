@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { Organisation } from 'src/models/organisation.class';
 import { DialogAddOrganisationComponent } from '../dialog-add-organisation/dialog-add-organisation.component';
