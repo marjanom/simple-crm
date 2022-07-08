@@ -29,10 +29,10 @@ export class LoginComponent implements OnInit {
     public auth: AngularFireAuth
   ) { }
 
-    
+
 
   ngOnInit(): void {
-  
+
 
   }
 
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
    * @param authEvent - JSON-object containing data of Firebase auth-event
    */
   async loginSuccessful(authEvent: any) {
-    if (authEvent.isAnonymous) (this.setGuestUser());
+    if (authEvent.isAnonymous) (await this.setGuestUser());
     await this.processUserData(authEvent);
 
     this.router.navigate(['/user']);
@@ -59,19 +59,19 @@ export class LoginComponent implements OnInit {
 
 
   /**
-   * Fetch auth-data for logged-in user; 
+   * Fetch auth-data for logged-in user;
    * Extend user-entry with custom property fields, if it only contains FirebaseAuth-data
    * @param authEvent - JSON-object containing data of Firebase auth-event
    */
-  processUserData(authEvent: any) {
+  async processUserData(authEvent: any) {
     this.userId = authEvent.uid;
-    this.firestore
+    await this.firestore
       .collection('users')
       .doc(this.userId)
       .ref.get()
-      .then((doc) => {
+      .then(async (doc) => {
         let fetchedUser = doc.data();
-        this.processUserEntry(fetchedUser, authEvent);
+        await this.processUserEntry(fetchedUser, authEvent);
       })
   }
 
@@ -79,8 +79,8 @@ export class LoginComponent implements OnInit {
    * Check fetched user data to decide about update or delete of user-entry
    * @param fetchedUser Data of fetched Firestore-document
    */
-  processUserEntry(fetchedUser: any, authEvent: any) {
-    if (authEvent.isAnonymous) (this.deleteAnonymUser());
+  async processUserEntry(fetchedUser: any, authEvent: any) {
+    if (authEvent.isAnonymous) (await this.deleteAnonymUser());
     else (this.checkCustomProperties(fetchedUser));
   }
 
@@ -88,8 +88,8 @@ export class LoginComponent implements OnInit {
 /**
  * Delete entry in Firestore-collection, if user is anonymous (due to guest login)
  */
-deleteAnonymUser() {
-    this.firestore.collection('users')
+async deleteAnonymUser() {
+    await this.firestore.collection('users')
       .doc(this.userId).delete();
   }
 
@@ -129,12 +129,12 @@ deleteAnonymUser() {
   }
 
 /**
- * Updates photoUrl in Firebase auth & Firestore collection; sets defaultPhotoUrl if none 
+ * Updates photoUrl in Firebase auth & Firestore collection; sets defaultPhotoUrl if none
  * @param fetchedUser : JSON-object containing auth-data gathered by Firebase
  */
   setPhotoUrl(fetchedUser: any) {
     let photoUrlExists = fetchedUser.photoURL !== ('' || null);
-    if (!photoUrlExists) (this.setDefaultPhoto()) 
+    if (!photoUrlExists) (this.setDefaultPhoto())
     else (this.user.photoURL = fetchedUser.photoURL);
   }
 
@@ -150,7 +150,7 @@ deleteAnonymUser() {
 
 
   /**
-   * Upload new User-object to Firestore to make custom user-properties accessible 
+   * Upload new User-object to Firestore to make custom user-properties accessible
    */
   uploadUserEntry() {
     if (this.userId) {

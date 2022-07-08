@@ -1,16 +1,3 @@
-ngx-auth-firebaseui {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 8px;
-    width: 100%;
-    max-width: 25rem;
-}
-
-.background-image {
-    object-fit: cover;
-    z-index: -1;
-}
-
 .login-overlay {
     position: absolute;
     display: flex;
@@ -22,6 +9,15 @@ ngx-auth-firebaseui {
     width: 100%;
     height: 100%;
     z-index: 1;
+
+    @media (max-width: 850px) {
+        z-index: -1;
+    }
+}
+
+.background-image {
+    object-fit: cover;
+    z-index: -1;
 }
 
 .login-container {
@@ -33,54 +29,60 @@ ngx-auth-firebaseui {
     padding: 20px 80px 0 80px;
     height: auto;
 
-}
-
-
-header {
-    position: absolute;
-    right: 0;
-    top: 0;
-    left: 0;
-
-    nav {
-        display: flex;
-        justify-content: flex-end;
-        padding: 32px;
-
-        a {
-            color: white;
-            margin-left: 32px;
-            margin-right: 32px;
-            text-decoration: none;
-            font-weight: 550;
-            font-size: 16px;
-            letter-spacing: 1.25px;
-
-            &:hover {
-                color: rgba(255,255,255,0.6);
-            }
-        }
-    }
-}
-
-app-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    z-index: 1;
-}
-
-@media (max-width: 850px) {
-    .login-overlay {
-        z-index: -1;
-    }
-
-    .login-container {
+    @media (max-width: 850px) {
         width: calc(100% - 80px);
         padding: 20px 40px;
         top: 56px;
+
+        header {
+            display: none;
+        }
     }
 
+    header {
+        position: absolute;
+        right: 0;
+        top: 0;
+        left: 0;
+
+        nav {
+            display: flex;
+            justify-content: flex-end;
+            padding: 32px;
+
+            a {
+                color: white;
+                margin-left: 32px;
+                margin-right: 32px;
+                text-decoration: none;
+                font-weight: 550;
+                font-size: 16px;
+                letter-spacing: 1.25px;
+
+                &:hover {
+                    color: rgba(255, 255, 255, 0.6);
+                }
+            }
+        }
+    }
+
+    ngx-auth-firebaseui {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 8px;
+        width: 100%;
+        max-width: 25rem;
+    }
+
+    app-footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        z-index: 1;
+    }
+}
+
+@media (max-width: 850px) {
     ngx-auth-firebaseui {
         padding: 1rem;
         max-width: 20rem;
@@ -88,10 +90,6 @@ app-footer {
         ::ng-deep .mat-card {
             margin: 1rem;
         }
-    }
-
-    header {
-        display: none;
     }
 }
 
@@ -109,7 +107,7 @@ app-footer {
             margin: 0.5rem;
         }
 
-        ::ng-deep .mat-card-title { 
+        ::ng-deep .mat-card-title {
             font-size: 18px;
         }
     }
@@ -129,7 +127,6 @@ app-footer {
         padding-top: 8px;
     }
 
-    
     ngx-auth-firebaseui {
         overflow-y: scroll;
         margin-bottom: 1rem;
@@ -137,10 +134,10 @@ app-footer {
         ::ng-deep .mat-tab-label {
             height: 32px;
             padding: 0 12px;
-       }
+        }
 
         ::ng-deep .mat-form-field-infix {
-            border-top: .5em;
+            border-top: 0.5em;
         }
     }
 }

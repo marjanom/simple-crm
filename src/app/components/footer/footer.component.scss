@@ -19,14 +19,8 @@ footer {
             text-decoration: underline;
         }
     }
-}
-
-
-
-@media (max-height: 600px) {
-    footer {
+    @media (max-height: 600px) {
         height: 32px;
         font-size: 0.8rem;
-
     }
 }

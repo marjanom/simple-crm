@@ -1,24 +1,15 @@
 <img class="login-overlay background-image" src="./assets/img/background.jpg">
 <div class="login-overlay login-container">
-
-
   <header>
     <nav>
-        <a href="/start">Start</a>        
-        <a *ngIf="dashboardAccessible" href="/dashboard">Dashboard</a>
+      <a href="/start">Start</a>
+      <a *ngIf="dashboardAccessible" href="/dashboard">Dashboard</a>
     </nav>
-</header>
+  </header>
 
-  <ngx-auth-firebaseui 
-    appearance = "legacy"
-    [providers]="[providers.Google]"
-    [guestEnabled]="true"
-    [resetPasswordEnabled]="true"
-    [tabIndex]="1"
-    messageOnAuthSuccess="message"
-    messageOnAuthError="errorMessage"
-    (onSuccess)="loginSuccessful($event)"
-    (onError)="printError($event)" >
-  </ngx-auth-firebaseui>   
+  <ngx-auth-firebaseui appearance="legacy" [providers]="[providers.Google]" [guestEnabled]="true"
+    [resetPasswordEnabled]="true" [tabIndex]="1" messageOnAuthSuccess="message" messageOnAuthError="errorMessage"
+    (onSuccess)="loginSuccessful($event)" (onError)="printError($event)">
+  </ngx-auth-firebaseui>
   <app-footer></app-footer>
 </div>
