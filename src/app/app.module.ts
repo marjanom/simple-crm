@@ -1,17 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { UserComponent } from './user/user.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,37 +22,41 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AngularFireModule } from '@angular/fire/compat';
-import { environment } from '../environments/environment';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
-import { UserDetailComponent } from './user-detail/user-detail.component';
 import { MatMenuModule } from '@angular/material/menu';
-import { DialogEditAddressComponent } from './dialog-edit-address/dialog-edit-address.component';
-import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.component';
-import { StartComponent } from './start/start.component';
-import { LoginComponent } from './login/login.component';
-import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-//import { faFacebookSquare } from '@fortawesome/free-brand-svg-icons';
-import { OrganisationComponent } from './organisation/organisation.component';
-import { DialogAddOrganisationComponent } from './dialog-add-organisation/dialog-add-organisation.component';
-import { OrganisationDetailComponent } from './organisation-detail/organisation-detail.component';
-import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
-import { DialogEditOrganisationComponent } from './dialog-edit-organisation/dialog-edit-organisation.component';
-import { DialogEditOrganisationTodosComponent } from './dialog-edit-organisation-todos/dialog-edit-organisation-todos.component';
-import { FooterComponent } from './footer/footer.component';
-import { DialogEditUserTodosComponent } from './dialog-edit-user-todos/dialog-edit-user-todos.component';
-import { DialogEditOrganisationUsersComponent } from './dialog-edit-organisation-users/dialog-edit-organisation-users.component';
-import { DialogEditOrganisationAdminsComponent } from './dialog-edit-organisation-admins/dialog-edit-organisation-admins.component';
-import { ImprintComponent } from './imprint/imprint.component';
-import { DataProtectionComponent } from './data-protection/data-protection.component';
-import { TrusticonsComponent } from './trusticons/trusticons.component';
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
+
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
+//import { faFacebookSquare } from '@fortawesome/free-brand-svg-icons';
+
+
+import { AppComponent } from './app.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { UserComponent } from './components/user/user.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
+import { StartComponent } from './components/start/start.component';
+import { LoginComponent } from './components/login/login.component';
+import { OrganisationComponent } from './components/organisation/organisation.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { ImprintComponent } from './components/imprint/imprint.component';
+import { DataProtectionComponent } from './components/data-protection/data-protection.component';
+import { TrusticonsComponent } from './components/trusticons/trusticons.component';
+import { OrganisationDetailComponent } from './components/organisation-detail/organisation-detail.component';
+
+
+import { DialogAddUserComponent } from './dialogs/dialogs-add/dialog-add-user/dialog-add-user.component';
+import { DialogAddOrganisationComponent } from './dialogs/dialogs-add/dialog-add-organisation/dialog-add-organisation.component';
+
+import { DialogEditAddressComponent } from './dialogs/dialogs-edit/dialog-edit-address/dialog-edit-address.component';
+import { DialogEditUserComponent } from './dialogs/dialogs-edit/dialog-edit-user/dialog-edit-user.component';
+import { DialogEditOrganisationComponent } from './dialogs/dialogs-edit/dialog-edit-organisation/dialog-edit-organisation.component';
+import { DialogEditOrganisationTodosComponent } from './dialogs/dialogs-edit/dialog-edit-organisation-todos/dialog-edit-organisation-todos.component';
+import { DialogEditUserTodosComponent } from './dialogs/dialogs-edit/dialog-edit-user-todos/dialog-edit-user-todos.component';
+import { DialogEditOrganisationUsersComponent } from './dialogs/dialogs-edit/dialog-edit-organisation-users/dialog-edit-organisation-users.component';
+import { DialogEditOrganisationAdminsComponent } from './dialogs/dialogs-edit/dialog-edit-organisation-admins/dialog-edit-organisation-admins.component';
 
 
 @NgModule({
@@ -57,29 +64,31 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     AppComponent,
     DashboardComponent,
     UserComponent,
-    DialogAddUserComponent,
     UserDetailComponent,
-    DialogEditAddressComponent,
-    DialogEditUserComponent,
     StartComponent,
     LoginComponent,
     OrganisationComponent,
-    DialogAddOrganisationComponent,
     OrganisationDetailComponent,
-    DialogEditOrganisationComponent,
-    DialogEditOrganisationTodosComponent,
     FooterComponent,
-    DialogEditUserTodosComponent,
-    DialogEditOrganisationUsersComponent,
-    DialogEditOrganisationAdminsComponent,
     ImprintComponent,
     DataProtectionComponent,
-    TrusticonsComponent
+    TrusticonsComponent,
+    DialogAddUserComponent,
+    DialogAddOrganisationComponent,
+    DialogEditAddressComponent,
+    DialogEditUserComponent,
+    DialogEditOrganisationComponent,
+    DialogEditOrganisationTodosComponent,
+    DialogEditUserTodosComponent,
+    DialogEditOrganisationUsersComponent,
+    DialogEditOrganisationAdminsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
@@ -92,16 +101,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatNativeDateModule,
     MatSelectModule,
     MatCheckboxModule,
-    FormsModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
     MatProgressBarModule,
     MatCardModule,
     MatMenuModule,
-    ReactiveFormsModule,
+    MatPasswordStrengthModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     FontAwesomeModule,
     NgxAuthFirebaseUIModule.forRoot(environment.firebase, () => 'Simple-CRM', environment.ngxAuthfirebaseUIConfig),
-    MatPasswordStrengthModule.forRoot(),
     DragDropModule,
     FlexLayoutModule
   ],

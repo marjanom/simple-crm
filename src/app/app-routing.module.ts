@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UserComponent } from './user/user.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
-import { StartComponent } from './start/start.component';
-import { LoginComponent } from './login/login.component';
-import { OrganisationComponent } from './organisation/organisation.component';
-import { OrganisationDetailComponent } from './organisation-detail/organisation-detail.component';
+import { UserComponent } from './components/user/user.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
+import { StartComponent } from './components/start/start.component';
+import { LoginComponent } from './components/login/login.component';
+import { OrganisationComponent } from './components/organisation/organisation.component';
+import { OrganisationDetailComponent } from './components/organisation-detail/organisation-detail.component';
 import { LoggedInGuard } from 'ngx-auth-firebaseui';
-import { ImprintComponent } from './imprint/imprint.component';
-import { DataProtectionComponent } from './data-protection/data-protection.component';
+import { ImprintComponent } from './components/imprint/imprint.component';
+import { DataProtectionComponent } from './components/data-protection/data-protection.component';
 
 
 const routes: Routes = [

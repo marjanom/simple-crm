@@ -4,10 +4,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Organisation } from 'src/models/organisation.class';
 import { User } from 'src/models/user.class';
-import { DialogEditOrganisationAdminsComponent } from '../dialog-edit-organisation-admins/dialog-edit-organisation-admins.component';
-import { DialogEditOrganisationTodosComponent } from '../dialog-edit-organisation-todos/dialog-edit-organisation-todos.component';
-import { DialogEditOrganisationUsersComponent } from '../dialog-edit-organisation-users/dialog-edit-organisation-users.component';
-import { DialogEditOrganisationComponent } from '../dialog-edit-organisation/dialog-edit-organisation.component';
+import { DialogEditOrganisationAdminsComponent } from '../../dialogs/dialogs-edit/dialog-edit-organisation-admins/dialog-edit-organisation-admins.component';
+import { DialogEditOrganisationTodosComponent } from '../../dialogs/dialogs-edit/dialog-edit-organisation-todos/dialog-edit-organisation-todos.component';
+import { DialogEditOrganisationUsersComponent } from '../../dialogs/dialogs-edit/dialog-edit-organisation-users/dialog-edit-organisation-users.component';
+import { DialogEditOrganisationComponent } from '../../dialogs/dialogs-edit/dialog-edit-organisation/dialog-edit-organisation.component';
 
 @Component({
   selector: 'app-organisation-detail',

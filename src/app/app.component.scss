@@ -1,77 +1,89 @@
 .mat-drawer-container {
     height: 100vh;
-}
+    .sidenav {
+        width: fit-content;
+        @media (max-width: 850px) {
+            width: 200px;
+        }
 
-.menu-icon {
-    cursor: pointer;
-}
+        .logo-container {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            padding-left: 16px;
+            padding-right: 16px;
+            min-height: 56px;
+            display: flex;
+            align-items: center;
 
-.sidenav {
-    width: fit-content;
-}
+            .logo {
+                cursor: pointer;
+                max-width: 100%;
+                height: 48px;
+            }
+        }
 
-.logo-container {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-    padding-left: 16px;
-    padding-right: 16px;
-    min-height: 56px;
-    display: flex;
-    align-items: center;
+        .menu-items {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
 
-    img {
-        cursor: pointer;
+            li {
+                padding-left: 16px;
+                padding-right: 16px;
+                height: 48px;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+
+                mat-icon {
+                    margin-right: 16px;
+                }
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.04);
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+    }
+
+    .main-container {
+        mat-toolbar {
+            min-height: 56px;
+            height: 56px;
+            justify-content: space-between;
+
+            mat-toolbar-row {
+                min-height: 56px;
+                height: 56px;
+                justify-content: space-between;
+
+                .menu-icon {
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .router-container {
+            padding-left: 56px;
+            padding-right: 56px;
+            padding-top: 16px;
+            padding-bottom: 16px;
+
+            @media (max-width: 400px) {
+                padding-right: 0;
+                padding-left: 0;
+            }
+        }
     }
 }
 
-mat-toolbar,
-mat-toolbar-row {
-    min-height: 56px;
-    height: 56px;
-    justify-content: space-between;
-}
-
-.menu-items {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-
-    li {
-        padding-left: 16px;
-        padding-right: 16px;
-        height: 48px;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-
-        mat-icon {
-            margin-right: 16px;
-        }
-
-        &:hover {
-            background-color: rgba(0, 0, 0, 0.04);
-        }
-
-        &:focus {
-            outline: none;
-        }
-    }
-}
-
-.router-container {
-    padding-left: 56px;
-    padding-right: 56px;
-    padding-top: 16px;
-    padding-bottom: 16px;
-}
-
-.logo {
-    max-width: 100%;
-    height: 48px;
-}
-
-::ng-deep .mat-fab.mat-accent, ::ng-deep .mat-mini-fab.mat-accent, ::ng-deep .mat-raised-button.mat-warn {
+::ng-deep .mat-fab.mat-accent,
+::ng-deep .mat-mini-fab.mat-accent,
+::ng-deep .mat-raised-button.mat-warn {
     background-color: #e91e63;
-
 }
 
 ::ng-deep .mat-raised-button {
@@ -86,6 +98,9 @@ mat-toolbar-row {
     padding: 0.5rem;
 }
 
+::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
+    background-color: rgba(0, 0, 0, 0.3);
+}
 
 .link-wrapper {
     margin: 2rem 0;
@@ -94,33 +109,11 @@ mat-toolbar-row {
 
 .reduced-height {
     height: calc(100% - 50px);
-}
-
-.no-padding {
-    padding: 0;
-}
-
-::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
-    background-color: rgba(0,0,0,0.3);
-}
-
-
-@media (max-width: 850px) {
-    .sidenav {
-        width: 200px;
-    }
-}
-
-
-@media (max-height: 600px) {
-    .reduced-height {
+    @media (max-height: 600px) {
         height: calc(100% - 32px);
     }
 }
 
-@media (max-width: 400px){
-    .router-container{
-        padding-right: 0;
-        padding-left:  0;
-    }
+.no-padding {
+    padding: 0;
 }

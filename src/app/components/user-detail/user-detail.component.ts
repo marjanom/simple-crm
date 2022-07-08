@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { User } from 'src/models/user.class';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogEditAddressComponent } from '../dialog-edit-address/dialog-edit-address.component';
-import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
-import { DialogEditUserTodosComponent } from '../dialog-edit-user-todos/dialog-edit-user-todos.component';
+import { DialogEditAddressComponent } from '../../dialogs/dialogs-edit/dialog-edit-address/dialog-edit-address.component';
+import { DialogEditUserComponent } from '../../dialogs/dialogs-edit/dialog-edit-user/dialog-edit-user.component';
+import { DialogEditUserTodosComponent } from '../../dialogs/dialogs-edit/dialog-edit-user-todos/dialog-edit-user-todos.component';
 
 @Component({
   selector: 'app-user-detail',
@@ -45,7 +45,7 @@ export class UserDetailComponent implements OnInit {
         });
     }
   }
-  
+
   editMenu() {
     const dialog = this.dialog.open(DialogEditAddressComponent);
     dialog.componentInstance.user = new User(this.user.toJSON());
